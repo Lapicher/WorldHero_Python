@@ -12,7 +12,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=100)
     intro = models.CharField(max_length=400)
     body = models.TextField()
-    imageUrl = models.URLField()
+    image = models.ImageField(upload_to='uploads', null=True)
     datePub = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)

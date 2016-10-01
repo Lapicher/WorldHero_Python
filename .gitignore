@@ -2,3 +2,4 @@ env/
 db.sqlite3
 .idea/
 *.pyc
+worldhero/uploads/
