@@ -1,0 +1,583 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+      <title>Destiny</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0"> <!--- Resposivo -->
+      <meta name="theme-color" content="#66A790">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body class="">
+        <header>
+          <span class="icon-sandwich"></span>
+          <h1 class="titulo">Destiny</h1>
+          <span class="icon-lupa"></span>
+        </header>
+        <!-- Encabezado --->
+        <div class="header">
+            <div class="row superior">
+                <div class="access">
+                  <a href="#login" class="login">Ingresar</a>
+                  <a href="#register" class="register">Registro</a>
+                </div>
+                <div class="row">
+                    <input class="txt-buscar" type="search" placeholder="Buscar..">
+                </div>
+            </div>
+        </div>
+        <div class="categorias">
+            <div class="inferior">
+                <nav class="navbar">
+                  <ul class="lista-nav">
+                    <li class="lista-item">
+                      <a href="#tec">Ciencia y Tecnología</a>
+                    </li>
+                    <li class="lista-item">
+                        <a href="#music">Música</a>
+                    </li>
+                    <li class="lista-item">
+                        <a href="#cine">Cine</a>
+                    </li>
+                    <li class="lista-item">
+                        <a href="#geek">Geek</a>
+                    </li>
+                  </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Listado de articulos --->
+        <div class="plantilla-detalle">
+              <div class="cerrar">
+                  <span class="icon-cross"></span>
+              </div>
+              <div class="user container">
+                  <div class="row">
+                    <figure class="picture-profile">
+                        <img  alt="">
+                    </figure>
+
+                  </div>
+                  <div class="row">
+                      <h1 class="name-user"></h1>
+                  </div>
+              </div>
+              <div class="segmentoArticle">
+
+                <!--
+
+                      el contenido del articulo sera dinamico con el click del listado de articulos.
+                -->
+
+              </div>
+              <div class="comentarios container">
+                  <labe>Comentarios:</labe>
+                  <div class="sectionComments">
+
+
+                  </div>
+
+                  <div class="escribir row">
+                    <form action="#" method="get">
+                        <label for="nombre" class="nombre" requiredd>Nombre:</label>
+                        <input type="text" id="nombre" class="inombre" placeholder="Nombre" required>
+                        <label for="email" class="email">Email:</label>
+                        <input type="text" id="email" class="iemail" placeholder="name@company.com" pattern="[A-Za-z0-9\.\+]+@[A-Za-z0-9]+\.[A-Za-z0-9\.]+" required>
+                        <label>Comentario: <small>máximo 150 palabras</small></label><small class="indicador">0</small>
+                        <textarea name="comment" id="message" cols="30" rows="10"></textarea>
+                        <button class="enviar">Enviar</button>
+                    </form>
+                  </div>
+
+              </div>
+        </div>
+
+        <!-- Listado de articulos --->
+        <div class="list-article">
+            <div class="item-article">
+              <!-- Articulo -->
+                <div class="article container" data-id="160415153500">
+
+                    <div class="section-user row" data-user="Wolverine">
+                        <div class="user col-3">
+                            <figure class="picture-profile">
+                                <img alt="image-profile" class="img-user">
+                            </figure>
+                        </div>
+                        <div class="col-3">
+                            <figcaption class="user-name">
+                                Wolverine
+                            </figcaption>
+                        </div>
+                        <div class="fecha col-6">
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="article-click">
+                        <div class="row cont-title">
+                            <h1 class="title-article">
+                                7 personajes del cómic que son prácticamente inmortales
+                            </h1>
+                        </div>
+
+                        <div class="img-article" style="background-image: url('./articles/Wolverine/160415153500/img/personajes-inmortales-comics-7.jpg');">
+                            <!--<img src="" alt="" class="img-article row">-->
+                        </div>
+
+                        <div class="cont-detalle-article">
+                            <p class="text-article row">
+                                Hablar de inmortalidad en los cómics puede ser algo ambiguo. Hay un montón de personajes con niveles de invulnerabilidad tan altos que a veces olvidamos que en realidad pueden morir fácilmente (recordemos que unos gramos de Kriptonita usados inteligentemente pueden acabar con Superman).
+                                Determinar qué es exactamente lo que hace inmortal a un personaje es complicado: hay quienes mueren y reviven, hay quienes se regeneran tan rápido que nunca llegan a morir, y están aquellos que sencillamente están por encima de todo y son, realmente, inmortales.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fav-comentarios">
+                          <span class="icon-heart col-1"></span>
+                          <span class="icon-bubbles col-1">21</span>
+                    </div>
+                </div>
+                <!-- Fin de Articulo-->
+            </div>
+
+            <div class="item-article">
+                <!-- Articulo -->
+                  <div class="article container" data-id="160618153010">
+
+                      <div class="section-user row" data-user="Batman">
+                          <div class="user col-3">
+                              <figure class="picture-profile">
+                                  <img alt="" class="img-user">
+                              </figure>
+                          </div>
+                          <div class="col-3">
+                              <figcaption class="user-name">
+                                  Batman
+                              </figcaption>
+                          </div>
+                          <div class="fecha col-6">
+                              <span>3 days ago</span>
+                          </div>
+                      </div>
+
+                      <div class="article-click">
+                          <div class="row cont-title">
+                              <h1 class="title-article">
+                                  5 teorías para matar a Wolverine
+                              </h1>
+                          </div>
+
+                          <div class="img-article" style="background-image: url('./articles/Batman/160618153010/img/wolverine-die.jpg');">
+                              <!--<img src="" alt="" class="img-article row">-->
+                          </div>
+
+                          <div class="cont-detalle-article">
+                              <p class="text-article row">
+                                  Pocos personajes son tan duros de matar en el universo Marvel como Wolverine. Ya sea por su factor regenerativo o la imposibilidad de morir de hambre o enfermedad, Logan se ha convertido en un auténtico badass de las viñetas.
+                                  Y no es que nadie lo haya intentado, tanto enemigos como aliados han intentado al menos una vez ponerle fin a la carrera del mutante que, desde 1974, viene ostentando el estatus de “personaje inmortal”.
+                              </p>
+                          </div>
+                      </div>
+                      <div class="fav-comentarios">
+                            <span class="icon-heart col-1"></span>
+                            <span class="icon-bubbles col-1">21</span>
+                      </div>
+                  </div>
+                  <!-- Fin de Articulo-->
+            </div>
+
+            <div class="item-article">
+                <!-- Articulo -->
+                  <div class="article container" data-id="160516153010">
+
+                      <div class="section-user row" data-user="Wolverine">
+                          <div class="user col-3">
+                              <figure class="picture-profile">
+                                  <img alt="" class="img-user">
+                              </figure>
+                          </div>
+                          <div class="col-3">
+                              <figcaption class="user-name">
+                                  Wolverine
+                              </figcaption>
+                          </div>
+                          <div class="fecha col-6">
+                              <span>3 days ago</span>
+                          </div>
+                      </div>
+
+                      <div class="article-click">
+                          <div class="row cont-title">
+                              <h1 class="title-article">
+                                  Las 7 peores cosas que Superman ha hecho.
+                              </h1>
+                          </div>
+
+                          <div class="img-article" style="background-image: url('./articles/Wolverine/160516153010/img/superman-kills-joker.jpg');">
+                              <!--<img src="" alt="" class="img-article row">-->
+                          </div>
+
+                          <div class="cont-detalle-article">
+                              <p class="text-article row">
+                                  Si pensamos en Superman, ¿en qué pensamos? Justicia, ideales, principios… Es el tipo de héroe que todo niño admira y que establece el marco de comparación para el resto de los superhéroes. Intachable, moralmente perfecto, casi una deidad. Aunque, si repasamos un poco la historia, también encontraremos perlas dignas de colección, como por ejemplo, cuando Superman enfrenta a Jimmy Olsen y Aquaman en una competencia para ver quién resiste más tiempo sin beber agua… hasta el punto de que para sobrevivir debieron beber el sudor de su compañero.
+                              </p>
+                          </div>
+                      </div>
+                      <div class="fav-comentarios">
+                            <span class="icon-heart col-1"></span>
+                            <span class="icon-bubbles col-1">21</span>
+                      </div>
+                  </div>
+                  <!-- Fin de Articulo-->
+            </div>
+
+
+            <div class="item-article">
+              <!-- Articulo -->
+                <div class="article container" data-id="160416173012">
+
+                    <div class="section-user row" data-user="laraTomb">
+                        <div class="user col-3">
+                            <figure class="picture-profile">
+                                <img alt="" class="img-user">
+                            </figure>
+                        </div>
+                        <div class="col-3">
+                            <figcaption class="user-name">
+                                laraTomb
+                            </figcaption>
+                        </div>
+                        <div class="fecha col-6">
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="article-click">
+                        <div class="row cont-title">
+                            <h1 class="title-article">
+                                Todas las conquistas amorosas de Bruce Wayne.
+                            </h1>
+                        </div>
+
+                        <div class="img-article" style="background-image: url('./articles/laraTomb/160416173012/img/batman-loves.jpeg');">
+                            <!--<img src="" alt="" class="img-article row">-->
+                        </div>
+
+                        <div class="cont-detalle-article">
+                            <p class="text-article row">
+                              Batman es reconocido por muchas cosas: ser el humano más peligroso del mundo (palabras de Superman, no mías), el mejor detective de la Tierra, un artista marcial sin precedentes, miembro fundador de la Liga de la Justicia y también,
+                              por ser un playboy multimillonario, capaz de conquistar a quien sea; o por lo menos eso parece.
+                              Sea por mantener la fachada, o por amor genuino, Bruce Wayne posee un extenso historial en lo que a relaciones amorosas se refiere.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fav-comentarios">
+                          <span class="icon-heart col-1"></span>
+                          <span class="icon-bubbles col-1">21</span>
+                    </div>
+                </div>
+                <!-- Fin de Articulo-->
+            </div>
+            <div class="item-article">
+                <!-- Articulo -->
+                  <div class="article container" data-id="160720172010">
+
+                      <div class="section-user row" data-user="Armand5">
+                          <div class="user col-3">
+                              <figure class="picture-profile">
+                                  <img alt="" class="img-user">
+                              </figure>
+                          </div>
+                          <div class="col-3">
+                              <figcaption class="user-name">
+                                  Armand5
+                              </figcaption>
+                          </div>
+                          <div class="fecha col-6">
+                              <span>3 days ago</span>
+                          </div>
+                      </div>
+
+                      <div class="article-click">
+                          <div class="row cont-title">
+                              <h1 class="title-article">
+                                  8 escenas del Joker que Jared Leto deberá superar.
+                              </h1>
+                          </div>
+
+                          <div class="img-article" style="background-image: url('./articles/Armand5/160720172010/img/joker-leto.jpg');">
+                              <!--<img src="" alt="" class="img-article row">-->
+                          </div>
+
+                          <div class="cont-detalle-article">
+                              <p class="text-article row">
+                                Cuando se anunció que Jared Leto interpretaría al Guasón para Suicide Squad, se pudieron escuchar gritos de sorpresa o de indignación a través de los hogares cinéfilos, más cuando hace sólo ocho años desde la interpretación de Heath Ledger.
+
+                              </p>
+                          </div>
+                      </div>
+                      <div class="fav-comentarios">
+                            <span class="icon-heart col-1"></span>
+                            <span class="icon-bubbles col-1">21</span>
+                      </div>
+                  </div>
+                  <!-- Fin de Articulo-->
+            </div>
+            <div class="item-article">
+              <!-- Articulo -->
+                <div class="article container" data-id="160723103015">
+
+                    <div class="section-user row" data-user="user1234">
+                        <div class="user col-3">
+                            <figure class="picture-profile">
+                                <img alt="" class="img-user">
+                            </figure>
+                        </div>
+                        <div class="col-3">
+                            <figcaption class="user-name">
+                                user1234
+                            </figcaption>
+                        </div>
+                        <div class="fecha col-6">
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="article-click">
+                        <div class="row cont-title">
+                            <h1 class="title-article">
+                                El panel de Justice League en SDCC 2016.
+                            </h1>
+                        </div>
+
+                        <div class="img-article" style="background-image: url('./articles/user1234/160723103015/img/justice-league.jpg');">
+                            <!--<img src="" alt="" class="img-article row">-->
+                        </div>
+
+                        <div class="cont-detalle-article">
+                            <p class="text-article row">
+                              Me verás Rebirth...
+
+                              Sin duda no ha habido en la Comic-Con 2016 un panel más importante para DC Comics que el de Justice League. Y sí, pasamos por alto el panel de Warner Bros, donde la compañía presentó tráilers y novedades del universo cinematográfico de DC como Suicide Squad, Wonder Woman y Justice League. Nos concentramos en Rebirth, el masivo evento de relanzamiento de la editorial comiquera que se está llevando todas las alabanzas de la industria mientras supera descomunalmente en ventas al evento de la compañía rival Marvel, Civil War II.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fav-comentarios">
+                          <span class="icon-heart col-1"></span>
+                          <span class="icon-bubbles col-1">21</span>
+                    </div>
+                </div>
+                <!-- Fin de Articulo-->
+            </div>
+            <div class="item-article">
+              <!-- Articulo -->
+                <div class="article container" data-id="160726140628">
+                    <div class="section-user row" data-user="NatalyJ">
+                        <div class="user col-3">
+                            <figure class="picture-profile">
+                                <img alt="" class="img-user">
+                            </figure>
+                        </div>
+                        <div class="col-3">
+                            <figcaption class="user-name">
+                                NatalyJ
+                            </figcaption>
+                        </div>
+                        <div class="fecha col-6">
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="article-click">
+                        <div class="row cont-title">
+                            <h1 class="title-article">
+                                5 superhéroes que asesinaron por un bien mayor.
+                            </h1>
+                        </div>
+
+                        <div class="img-article" style="background-image: url('./articles/NatalyJ/160726140628/img/wolverine-jean.jpg');">
+                            <!--<img src="" alt="" class="img-article row">-->
+                        </div>
+
+                        <div class="cont-detalle-article">
+                            <p class="text-article row">
+                              La muerte es uno de los elementos más comunes e importantes dentro de una narrativa, en especial, en los cómics.
+
+                              Pueden marcar el final de una era, o el comienzo de una generación. Pueden aliviar nuestra ansiedad, luego de un momento de tensión; o, simplemente, entristecernos durante meses... Es más, algunas muertes pueden hasta ser satisfactorias (en un buen sentido).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fav-comentarios">
+                          <span class="icon-heart col-1"></span>
+                          <span class="icon-bubbles col-1">21</span>
+                    </div>
+                </div>
+                <!-- Fin de Articulo-->
+            </div>
+            <div class="item-article">
+              <!-- Articulo -->
+                <div class="article container" data-id="160615130200">
+                    <div class="section-user row" data-user="robertGra">
+                        <div class="user col-3">
+                            <figure class="picture-profile">
+                                <img alt="" class="img-user">
+                            </figure>
+                        </div>
+                        <div class="col-3">
+                            <figcaption class="user-name">
+                                robertGra
+                            </figcaption>
+                        </div>
+                        <div class="fecha col-6">
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="article-click">
+                        <div class="row cont-title">
+                            <h1 class="title-article">
+                                10 superhéroes más fuertes que Hulk.
+                            </h1>
+                        </div>
+
+                        <div class="img-article" style="background-image: url('./articles/robertGra/160615130200/img/hulk.jpg');">
+                            <!--<img src="" alt="" class="img-article row">-->
+                        </div>
+
+                        <div class="cont-detalle-article">
+                            <p class="text-article row">
+                              La muerte es uno de los elementos más comunes e importantes dentro de una narrativa, en especial, en los cómics.
+
+                              Pueden marcar el final de una era, o el comienzo de una generación. Pueden aliviar nuestra ansiedad, luego de un momento de tensión; o, simplemente, entristecernos durante meses... Es más, algunas muertes pueden hasta ser satisfactorias (en un buen sentido).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fav-comentarios">
+                          <span class="icon-heart col-1"></span>
+                          <span class="icon-bubbles col-1">21</span>
+                    </div>
+                </div>
+                <!-- Fin de Articulo-->
+            </div>
+            <div class="item-article">
+              <!-- Articulo -->
+                <div class="article container" data-id="160802224400">
+                    <div class="section-user row" data-user="Batman">
+                        <div class="user col-3">
+                            <figure class="picture-profile">
+                                <img alt="" class="img-user">
+                            </figure>
+                        </div>
+                        <div class="col-3">
+                            <figcaption class="user-name">
+                                Batman
+                            </figcaption>
+                        </div>
+                        <div class="fecha col-6">
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="article-click">
+                        <div class="row cont-title">
+                            <h1 class="title-article">
+                                5 historias de The Vision que deberías leer.
+                            </h1>
+                        </div>
+
+                        <div class="img-article" style="background-image: url('./articles/Batman/160802224400/img/vision.jpg');">
+                            <!--<img src="" alt="" class="img-article row">-->
+                        </div>
+
+                        <div class="cont-detalle-article">
+                            <p class="text-article row">
+                              La muerte es uno de los elementos más comunes e importantes dentro de una narrativa, en especial, en los cómics.
+
+                              Pueden marcar el final de una era, o el comienzo de una generación. Pueden aliviar nuestra ansiedad, luego de un momento de tensión; o, simplemente, entristecernos durante meses... Es más, algunas muertes pueden hasta ser satisfactorias (en un buen sentido).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fav-comentarios">
+                          <span class="icon-heart col-1"></span>
+                          <span class="icon-bubbles col-1">21</span>
+                    </div>
+                </div>
+                <!-- Fin de Articulo-->
+            </div>
+            <div class="item-article">
+              <!-- Articulo -->
+                <div class="article container" data-id="160802230855">
+                    <div class="section-user row" data-user="laraTomb">
+                        <div class="user col-3">
+                            <figure class="picture-profile">
+                                <img alt="" class="img-user">
+                            </figure>
+                        </div>
+                        <div class="col-3">
+                            <figcaption class="user-name">
+                                laraTomb
+                            </figcaption>
+                        </div>
+                        <div class="fecha col-6">
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+
+                    <div class="article-click">
+                        <div class="row cont-title">
+                            <h1 class="title-article">
+                                Momentos más sádicos del Joker en su larga historia.
+                            </h1>
+                        </div>
+
+                        <div class="img-article" style="background-image: url('./articles/laraTomb/160802230855/img/joker.jpg');">
+                            <!--<img src="" alt="" class="img-article row">-->
+                        </div>
+
+                        <div class="cont-detalle-article">
+                            <p class="text-article row">
+                              No por nada el Guasón se presenta como uno de los villanos más interesantes del género de superhéroes. Sin ningún poder sobrenatural en su haber, el Payaso del Crimen se ha ganado su estatus de archirrival a base de actos retorcidos; pura maldad que deja en evidencia la inexistencia de cualquier ápice de humanidad en su ser.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fav-comentarios">
+                          <span class="icon-heart col-1"></span>
+                          <span class="icon-bubbles col-1">21</span>
+                    </div>
+                </div>
+                <!-- Fin de Articulo-->
+            </div>
+        </div>
+
+        <div class="list-article paginacion">
+            <div class="container">
+              <div class="divVert">
+                  <a href="#ant" class="ant">Anterior</a>
+              </div>
+              <a href="#sig" class="sig">Siguiente</a>
+            </div>
+
+        </div>
+
+        <a href="#" class="scroll-up"></a>
+        <!--
+        <p id="subir" class="btn-top" style="display: block;">
+            <a href="#" class="up"></a>
+        </p>-->
+        <div class="footer">
+            <footer>
+                <span>
+                    Destiny
+                </span>
+                <p class="autor">
+                    Nataly Contreras &copy; 2016
+                </p>
+            </footer>
+        </div>
+
+        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+    </body>
+
+</html>
