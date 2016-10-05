@@ -15,5 +15,5 @@ class HomeView(View):
         """
 
         blogs = Blog.objects.all().order_by('-created_at').select_related('owner')
-        context = {'photo_list': blogs[:4]}
+        context = {'blogs_list': blogs[:4]}
         return render(request, 'blog/index.html', context)
