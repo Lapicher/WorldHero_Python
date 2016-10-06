@@ -19,6 +19,7 @@ from django.views.static import serve
 
 from django.conf import settings
 from blog.urls import urlpatterns
+from users.urls import patrones_user
 
 print(settings.STATIC_ROOT)
 
@@ -28,7 +29,8 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {
         'document_root': settings.MEDIA_ROOT
     }),
-    url(r'', include(urlpatterns))
+    url(r'', include(urlpatterns)),
+    url(r'', include(patrones_user))
 ]
 
 
