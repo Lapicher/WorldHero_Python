@@ -1,0 +1,54 @@
+footer{
+    background-color: $color-brackground-header;
+    position: relative;
+    top: 150px;
+    height: 60px;
+    
+    @include if-is-tablet {
+        top: 200px;
+    }
+    @include if-is-desktop {
+        top: 200px;
+    }
+
+    @include if-is-phone {
+        span {
+            font-size: $font-size-login + 3pt;
+            color: $color-adeep;
+        }
+        span, p {
+            margin-left: 10px;
+        }
+        p {
+            font-size: $font-size-login - 2pt;
+            background-color: $color-brackground-header;
+            //padding-top: 10px;
+            color: $color-adeep;
+            margin-top: 10px;
+        }
+    }
+
+    @include if-is-tablet {
+        height: 20px;
+        text-align: center;
+        padding: 20px;
+        font-size: $font-size-login;
+        color: $color-adeep;
+        span {
+            float: left;
+            font-size: $font-size-article+ 4pt;
+        }
+    }
+    @include if-is-desktop {
+        height: 20px;
+        text-align: center;
+        padding: 20px;
+        font-size: $font-size-login;
+        color: $color-adeep;
+        span {
+            float: left;
+            font-size: $font-size-article+ 6pt;
+        }
+    }
+
+}

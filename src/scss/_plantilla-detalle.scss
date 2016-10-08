@@ -1,0 +1,194 @@
+.plantilla-detalle{
+    display: none;
+    position: relative;
+    top: 110px;
+
+    @include if-is-phone {
+        top: 70px;
+    }
+    .cerrar{
+      padding-right: 20px;
+      padding-top: 10px;
+      padding-bottom: 30px;
+      .icon-cross {
+          color: darken($color-rojo-fav, 20%);
+          &:hover{
+              cursor: pointer;
+              color: darken($color-rojo-fav, 30%);
+          }
+      }
+      .icon-cross:before {
+
+          content: "\ea0f";
+          float: right;
+          position: static;
+          font-size: 0.8em;
+          font-family: "icomoon";
+      }
+    }
+    .user{
+        background-color: darken($color-article, 5%);
+        height: 150px;
+        display: block;
+        text-align: center;
+        .picture-profile {
+            padding-top: 20px;
+            img{
+                height: 80px;
+                width: 80px;
+                border-radius: 40px;
+            }
+        }
+        h1{
+            padding-top: 10px;
+            font-family: $font-pt;
+        }
+        @include sombra;
+    }
+
+    .title-article{
+        padding: 40px 10px 20px 10px;
+        color: $color-negro;
+        font-size: 23pt;
+        font-family: $font-titulo-principal;
+    }
+    .fecha-creacion {
+        padding-bottom: 20px;
+        font-size: $font-size-login - 1pt;
+        color: transparentize($color-adeep,0.5);
+        strong{
+            font-weight: bold;
+        }
+        span{
+            padding-left: 20px;
+        }
+    }
+    .img-article-header{
+        height: 600px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        @include if-is-phone {
+            height: 300px;
+        }
+        @include if-is-desktop {
+            height: 1024px;
+        }
+    }
+    .article-detail{
+        padding-top: 30px;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+        @include if-is-tablet {
+            width: 700px;
+        }
+        @include if-is-desktop {
+            width: 900px;
+        }
+        p {
+            color: $color-adeep;
+            font-family: $font-pt;
+            text-align: justify;
+        }
+        img{
+            width: 300px;
+            @include if-is-tablet {
+                width: 700px;
+            }
+            @include if-is-desktop {
+                width: 900px;
+            }
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: $font-size-login +2pt;
+            font-style: italic;
+        }
+        a{
+            text-decoration: none;
+            &:hover{
+                color: red;
+            }
+        }
+        strong{
+            font-weight: bold;
+        }
+
+    }
+}
+.change-background-color  {
+    background-color: $color-article;
+}
+.mostrar-detalle{
+    display: block;
+}
+.ocultar-detalle{
+    display: none;
+}
+.closeup{
+    color: white;
+}
+// Estilo apartado de comentarios.
+.comentarios{
+    background-color: $color-article;
+    position: relative;
+    top: 100px;
+    display: block;
+    width: 100%;
+    margin-bottom: 100px;
+    @include if-is-tablet {
+        width: 700px;
+    }
+    @include if-is-desktop {
+        width: 900px;
+    }
+
+    label{
+        font-size: $font-size-login;
+    }
+    .coment{
+        padding: 10px 0;
+        p{
+            font-size: $font-size-login;
+        }
+    }
+    .escribir{
+        padding: 0 10px;
+        background-color: darken($color-article, 5%);;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+    }
+    .sectionComments{
+      margin-top: 10px;
+      .item-comment{
+          margin-top: 2px;
+          background-color: darken($color-article, 5%);
+      }
+    }
+    .escribir{
+        padding-bottom: 10px;
+        padding: 0 10px 10px 10;
+        small{
+            font-size: $font-size-login - 3pt;
+        }
+        textarea{
+            width: calc(100% - 10px);
+        }
+        button{
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: $color-brackground-header;
+            border-radius: 5px;
+            &:hover{
+                background-color: $color-hover;
+            }
+        }
+        input{
+            display: block;
+        }
+    }
+
+}

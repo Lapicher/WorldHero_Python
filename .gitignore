@@ -3,3 +3,6 @@ db.sqlite3
 .idea/
 *.pyc
 worldhero/uploads/
+node_modules/
+worldhero/static/css/style.css.map
+worldhero/static/js/app.js.map

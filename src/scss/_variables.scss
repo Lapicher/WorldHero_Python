@@ -1,0 +1,41 @@
+//font families
+$font-titulo-principal: 'Fredericka the Great', cursive;
+$font-article: 'Nixie One', cursive;
+$font-pt: 'PT Serif', serif;
+$font-raleway: 'Raleway', sans-serif;
+$font-mill: 'Sorts Mill Goudy', serif;
+//font-family: 'Overlock SC', cursive;
+//font-family: 'Lancelot', cursive;
+//font-family: 'Underdog', cursive;
+
+//font sizes
+$font-size-titulo-principal: 20pt;
+$font-size-article: 14pt;
+$font-size-login: 12pt;
+$font-size-fecha: 9pt;
+$font-size-user: 13pt;
+
+//font colors
+$font-color-principal: rgb(12, 128, 164);
+
+// colores de background
+$color-brackground: #ACBCB7;
+$color-brackground-header: #78b1a4;
+$color-professional: #46DCBF;
+$color-adeep: #253A30;
+$color-article: #e2d8d8;
+$color-hover: #4c8a74;
+$color-categoria-phone: #288e6a;
+$color-sirena: #8ED7BF;
+$color-grey: #EBEDEA;
+$color-titulo: #0d7d9e;
+$color-negro: black;
+$color-azul-cielo: #B5E0E7;
+$color-holsten-white: #F5F4FA;
+$color-rojo-fav: #de5c5c;
+
+
+// resposive variables
+$tablet-width: 768px;
+$phone-width: $tablet-width - 1px;
+$desktop-width: 1024px;

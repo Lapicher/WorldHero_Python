@@ -1,0 +1,213 @@
+.list-article{
+    position: relative;
+    display: block;
+    top: 150px;
+    @include if-is-phone {
+        top: 80px;
+    }
+    margin: 0 2%;
+    margin-bottom: 30px;
+    align-content: center;
+    .item-article{
+        display: block;
+        background-color: $color-article;
+        @include sombra;
+        margin-bottom: 10px;
+        @include if-is-phone {
+            height: 400px;
+        }
+        @include if-is-tablet {
+            height: 600px;
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 700px;
+            margin-bottom: 15px;
+        }
+        @include if-is-desktop {
+            height: 600px;
+            max-width: 800px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 20px;
+            //margin-bottom: 30px;
+        }
+    }
+}
+.paginacion{
+    font-weight: bold;
+    margin: 0 20%;
+    top: 150px;
+    align-items: center;
+    @include center;
+    .divVert{
+        display: inline;
+        border-right: 1pt solid gray;
+        margin-right: 8px;
+    }
+    a{
+        text-decoration: none;
+        font-size: $font-size-login+2pt;
+        color: $color-adeep;
+        &:hover{
+            color: $color-hover;
+        }
+    }
+    @include if-is-phone {
+        margin: 0 5%;
+        top: 100px;
+    }
+
+}
+
+.scroll-up {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    top: calc(100vh - 50px);
+    right: 30px;
+    opacity: 0.5;
+    background: transparent url('../../static/image/arrowtop.png') top left no-repeat;
+    z-index: 10;
+    @include if-is-phone {
+        right: 10px;
+    }
+}
+
+// estilos para articulo espesifico.
+//Usuario
+.item-article .article{
+    //background-color: red;
+    .section-user{
+        padding: 20px;
+        position: relative;
+        font-family: $font-pt;
+        .user{
+            width: 60px;
+            img{
+                height: 60px;
+                display: inline-block;
+                border-radius: 50%;
+                @include if-is-phone {
+                    height: 50px;
+                }
+            }
+        }
+        .user, figcaption{
+            cursor: pointer;
+            &:hover{
+                color: darken($color-azul-cielo, 50%);
+            }
+        }
+        .user-name{
+            font-size: $font-size-user;
+            display: inline-block;
+            float: left;
+            padding-left: 10px;
+            @include if-is-phone {
+                padding-left: 0;
+            }
+
+        }
+        .fecha span{
+            float: right;
+            font-size: $font-size-fecha;
+        }
+        .col-6{
+            width: 65%;
+            @include if-is-phone {
+                width: 50%;
+            }
+        }
+
+    }
+}
+.article{
+    display: block;
+    .cont-title{
+        height: 110px;
+        background-color: darken($color-article, 5%);
+        text-overflow: ellipsis;
+
+        .title-article{
+            font-family: $font-raleway;
+            font-size: $font-size-article + 1pt;
+            font-style: italic;
+            position: relative;
+            padding-top: 50px;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-bottom: 5px;
+            color: $color-negro;
+            //font-weight: bold;
+        }
+    }
+    .img-article{
+        height: 300px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        @include if-is-phone {
+            height: 100px;
+        }
+    }
+    .cont-detalle-article{
+        color: transparentize($color-adeep, 0.5);
+        padding: 10px 20px 10px 20px;
+        overflow: hidden;
+        height: 80px;
+        .text-article{
+            font-family: $font-pt;
+            text-overflow: ellipsis;
+            font-size: 14pt;
+            @include if-is-phone {
+                font-size: 10pt;
+            }
+        }
+    }
+    .article-click {
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .fav-comentarios{
+        font-size: $font-size-login - 1pt;
+        padding: 0 20px;
+        padding-top: 15px;
+        .icon-heart{
+            float: left;
+            color: darken($color-article, 10%);
+        }
+        .favup{
+            color: $color-rojo-fav;
+        }
+        .icon-bubbles{
+            float: right;
+            color: darken($color-brackground, 20%);
+        }
+        .col-1 {
+            @include if-is-phone {
+                width: 16.66666667%;
+            }
+        }
+        .icon-bubbles:before {
+            float: right;
+            content: '\e96c';
+            position: static;
+            font-size: 0.9em;
+            font-family: "icomoon";
+        }
+        .icon-heart:before{
+            content: '\e9da';
+            position: static;
+            font-size: 1.5em;
+            font-family: "icomoon";
+        }
+    }
+    .icon-bubbles{
+        &:hover{
+            cursor: pointer;
+            color: darken($color-professional, 40%);
+        }
+    }
+}

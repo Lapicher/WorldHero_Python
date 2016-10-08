@@ -1,0 +1,176 @@
+header{
+    //width: 100%;
+    height: 60px;
+    @include if-is-phone {
+        width: 100%;
+    }
+    background-color: $color-brackground-header;
+    z-index: 3;
+    position: fixed;
+    .icon-padre{
+        float: left;
+    }
+    @include if-is-phone {
+        .icon-sandwich:before {
+            float: left;
+            content: '\e9be';
+            position: static;
+            font-size: 1em;
+            font-family: "icomoon";
+            padding: 10px 20px;
+        }
+        .icon-sandwich, .icon-lupa{
+            color: $color-categoria-phone;
+        }
+        .active{
+            color: $color-adeep;
+        }
+        .icon-lupa:before{
+            float: right;
+            content: '\e986';
+            position: static;
+            font-size: 0.9em;
+            font-family: "icomoon";
+            padding: 15px 20px;
+        }
+
+    }
+    .titulo{
+        font-family: $font-titulo-principal;
+        font-size: $font-size-titulo-principal;
+        float: left;
+        padding: 13px 50px;
+        font-size: 25pt;
+        text-shadow: 2px 2px $color-adeep;
+        text-transform: uppercase;
+        @include if-is-phone {
+            font-size: 20pt;
+            transition: 0.5s linear;
+            padding: 13px 0px;
+        }
+    }
+}
+.header, .categorias{
+    background-color: $color-brackground-header;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    top : 0px;
+    @include if-is-phone {
+        top: 60px;
+        display: none;
+    }
+    .superior{
+        height: 60px;
+        .access{
+            margin-right: 30px;
+            float: right;
+            font-size: $font-size-login;
+            .login, .register{
+                color: $color-adeep;
+                font-size: $font-size-login;
+                float: right;
+                text-decoration: none;
+                padding: 20px 10px;
+                &:hover{
+                    border-radius: 10%;
+                    color: $color-sirena;
+                    transition: all 0.5s;
+                }
+            }
+        }
+        .txt-buscar{
+            float: right;
+            display: inline-block;
+            position: absolute;
+            top: 70px;
+            margin-left: 70%;
+            font-size: $font-size-login;
+            border-radius: 5px;
+            background-color: darken($color-brackground-header, 5%);
+            border: none;
+            padding: 5px;
+
+            &:focus{
+                outline-style: none;
+                background-color: $color-article;
+            }
+            @include if-is-phone {
+                float: right;
+                margin-left: 40%;
+                margin-right: 20px;
+                position: relative;
+                top: 0;
+            }
+        }
+        @include if-is-phone {
+            height: 40px;
+        }
+    }
+
+}
+.categorias{
+    display: inline-block;
+    z-index: 1;
+    position: fixed;
+    top: 60px;
+    //border-top: 2px solid $color-titulo;
+    .inferior{
+        .navbar{
+            z-index: 3;
+            .lista-nav{
+                width: 100%;
+                background-color: $color-brackground-header;
+                float: left;
+                margin: 0;
+            }
+            .lista-item{
+                display: inline-block;
+                padding-left: 10px;
+                font-size: $font-size-login;
+                padding: 15px;
+                @include if-is-phone {
+                    display: block;
+                    background-color: $color-categoria-phone;
+                    //border-top: 1px solid darken($color-titulo, 5%);
+                    &:hover{
+                        background-color: darken($color-brackground-header, 1%);
+                        transition: 1s;
+                    }
+                }
+            }
+            .lista-item a{
+                color: $color-brackground;
+                text-decoration: none;
+                @include if-is-tablet {
+                    color: $color-holsten-white;
+                }
+                @include if-is-desktop {
+                    color: $color-holsten-white;
+                }
+            }
+            .lista-item:hover > a {
+                color: darken($color-hover,10%);
+                transition : all 0.3s linear;
+
+                @include if-is-phone {
+                    color: $color-holsten-white;
+                }
+            }
+        }
+    }
+    @include if-is-phone {
+        display: none;
+        top: 110px;
+    }
+}
+.phone-active{
+    @include if-is-phone {
+        display: inline-block;
+    }
+}
+.phone-inactive{
+    @include if-is-phone {
+        display: none;
+    }
+}

@@ -1,0 +1,14 @@
+@mixin center {
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@mixin sombra {
+    -webkit-box-shadow: 4px 15px 48px 8px rgba(0,0,0,0.20);
+    -moz-box-shadow: 4px 15px 48px 8px rgba(0,0,0,0.20);
+    box-shadow: 4px 15px 48px 8px rgba(0,0,0,0.20);
+    border-radius: 3px;
+}
