@@ -7,5 +7,5 @@ urlpatterns = [
     #url(r'^photos/$', PhotoListView.as_view(), name='photos_my_photos'),
     #url(r'^$', HomeView.as_view(), name='photos_home'),
 
-    url(r'^$', HomeView.as_view(), name="blog_home"),
+    url(r'^blogs$', HomeView.as_view(), name="blog_home"),
 ]
