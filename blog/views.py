@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
 from blog.models import Blog
+from categorias.models import Category
 
 
 class HomeRedirect(View):
@@ -18,6 +19,7 @@ class HomeRedirect(View):
         """
         return redirect('blogs/')
 
+
 class HomeView(View):
     def get(self, request):
         """
@@ -27,18 +29,20 @@ class HomeView(View):
         :return: objecto HttpResponse con los datos de la respuesta
         """
 
-        blogs = Blog.objects.all().order_by('-created_at').select_related('owner')
-        context = {'blogs_list': blogs[:4]}
+        categorys_totals = Category.objects.all()
+
+        categoria = request.GET.get('category')
+        if categoria is None:
+
+            blogs = Blog.objects.all().order_by('-created_at').select_related('owner')
+
+        else:
+            object_category = get_object_or_404(Category, name=categoria)
+            blogs = Blog.objects.filter(type=object_category).order_by('-created_at')
+
+        context = {'blogs_list': blogs[:4], 'category_list': categorys_totals}
+
         return render(request, 'blog/index.html', context)
-
-class HomeViewByCategory(View):
-    def get(self, request):
-        """
-        Renderiza el home al haber hecho clic a una categoria, solo mostrara post de la categoria seleccionada.
-        :param request:
-        :return:
-        """
-
 
 
 class HomeUserView(View):
@@ -49,9 +53,10 @@ class HomeUserView(View):
         :param request: objeto HttpRequest con los datos de la peticion
         :return: objecto HttpResponse con los datos de la respuesta
         """
+        categorys_totals = Category.objects.all()
         user_object = get_object_or_404(User, username=user)
         blogs = Blog.objects.all().order_by('-created_at').select_related('owner').filter(owner=user_object)
-        context = {'blogs_list': blogs[:4]}
+        context = {'blogs_list': blogs[:4], 'category_list': categorys_totals}
         return render(request, 'blog/index.html', context)
 
 
@@ -69,7 +74,6 @@ class BlogQueryset(object):
         return possible_photos
         """
         return possible_photos
-
 
 
 class DetailView(View):

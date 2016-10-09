@@ -32,18 +32,13 @@
             <div class="inferior">
                 <nav class="navbar">
                   <ul class="lista-nav">
-                    <li class="lista-item">
-                      <a href="#tec">Ciencia y Tecnología</a>
-                    </li>
-                    <li class="lista-item">
-                        <a href="#music">Música</a>
-                    </li>
-                    <li class="lista-item">
-                        <a href="#cine">Cine</a>
-                    </li>
-                    <li class="lista-item">
-                        <a href="#geek">Geek</a>
-                    </li>
+
+                    {% for cat in category_list %}
+                        <li class="lista-item">
+                            <a href="./?category={{ cat.name }}">{{ cat.name }}</a>
+                        </li>
+                    {% endfor %}
+
                   </ul>
                 </nav>
             </div>
