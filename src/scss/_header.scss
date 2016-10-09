@@ -43,6 +43,10 @@ header{
         font-size: 25pt;
         text-shadow: 2px 2px $color-adeep;
         text-transform: uppercase;
+        &:hover{
+            cursor: pointer;
+            color: darken($color-titulo, 5%);
+        }
         @include if-is-phone {
             font-size: 20pt;
             transition: 0.5s linear;

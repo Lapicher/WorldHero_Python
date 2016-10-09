@@ -4,53 +4,7 @@ var moment= require('moment');
 
 function mostrarArticulo(self,id,userArticle,scroll){
 
-/*
-    $.ajax
-    ({
-        url: '/articles/'+userArticle+"/"+id+"/article.html",
-        datatype: 'json',
-        mtype: 'GET',
-        cache: false,
-        async: true,
-        success: function(data){
-            //$('.segmentoArticle').append(data);
-            document.getElementsByClassName("segmentoArticle").innerHTML=data;
-            console.log(data);
-            //colocar titulo principal en el titulo principal del detalle del articulo. FEcha de creacion.
-            $('.segmentoArticle').find('.title-article').html($(self).find('.title-article').html());
-            var fecha=moment(id,"YYMMDDHHmmss").format('LLL');
-            console.log(fecha);
-            $('.segmentoArticle').find('.fecha-creacion span').text(fecha);
-            var imagen=$(self).find('.img-article').css("background-image");
-            $('.segmentoArticle').find('.img-article-header').css("background-image",imagen);
-
-            //colocar foto en la plantilla de detalle
-            $('.plantilla-detalle').find('.picture-profile >img').attr("src","../../articles/"+userArticle+"/img-profile/profile.jpg");
-            $('.plantilla-detalle').find('.name-user').text(userArticle);
-            $('.plantilla-detalle').data("id",id);
-            $('.plantilla-detalle').data("user",userArticle);
-
-            //HACER VISIBLE LA PLANTILLA DE DETALLE.
-            $('.plantilla-detalle').addClass('mostrar-detalle');
-            $('.list-article').addClass('ocultar-detalle');
-            $('body').addClass('change-background-color');
-            $(window).scrollTop(scroll);
-        },
-        complete: function(jsondata, stat) {
-            //alert(stat);
-            //debugger;
-            if (stat == 'success') {
-              //var templateText = $.parseJSON(jsondata.responseText);
-              //console.log("templateText");
-            } else alert('error with ajax call back');
-        },
-        Error: function() {
-        alert('Error: with ajax call back');
-        }
-    });
-*/
-    var direccion='./articles/'+userArticle+"/"+id+"/article.html";
-    debugger;
+    var direccion='./'+userArticle+"/"+id;
     $.get(direccion,function(data){
         $('.segmentoArticle').append(data);
         //colocar titulo principal en el titulo principal del detalle del articulo. FEcha de creacion.
@@ -116,10 +70,10 @@ $('.icon-bubbles').on("click",function(){
 });
 //evento cuando no carga imagen de perfil pone por defecto un placeholder.
 $(".picture-profile >img").on("error",function(){
-    $(this).attr("src","./static/image/profile-placeholder.png");
+    $(this).attr("src","/../static/image/profile-placeholder.png");
 });
 
 // evento sobre el usuario para redirigirlo a su perfil.
 $(".user-name").on("click", function(){
-    window.location = "blogs/user/";
+    window.location = this.innerHTML.trim();
 });

@@ -8,7 +8,7 @@ from categorias.models import Category
 class Blog(models.Model):
 
     owner = models.ForeignKey(User)
-    type = models.ForeignKey(Category)
+    type = models.ManyToManyField(Category)
     title = models.CharField(max_length=100)
     intro = models.CharField(max_length=400)
     body = models.TextField()

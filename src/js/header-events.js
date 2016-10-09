@@ -5,6 +5,9 @@ $('.icon-sandwich').on("click",eventoSandwich);
 
 $('.icon-lupa').on("click", eventoLupa);
 
+
+
+
 function eventoSandwich(){
 
     //alert("click en san");
@@ -34,3 +37,4 @@ function eventoLupa(){
         $( ".icon-sandwich").on( "click",eventoSandwich);
     }
 }
+
