@@ -5,7 +5,10 @@ $('.icon-sandwich').on("click",eventoSandwich);
 
 $('.icon-lupa').on("click", eventoLupa);
 
+$('.titulo').on("click", function(){
 
+    window.location = "/";
+});
 
 
 function eventoSandwich(){

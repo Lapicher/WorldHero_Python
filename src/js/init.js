@@ -31,3 +31,4 @@ $(".article").each(function() {
     $(this).find('.picture-profile >img').attr("src", url_image);
 
 });
+
