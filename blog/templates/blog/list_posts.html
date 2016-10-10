@@ -2,54 +2,8 @@
 
 
 {% block posts %}
-        <div class="new_post">
-            <a href="/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
-        </div>
-        <!-- Listado de articulos --->
-        <div class="plantilla-detalle">
-              <div class="cerrar">
-                  <span class="icon-cross"></span>
-              </div>
-              <div class="user container">
-                  <div class="row">
-                    <figure class="picture-profile">
-                        <img  alt="">
-                    </figure>
-                  </div>
-                  <div class="row">
-                      <h1 class="name-user"></h1>
-                  </div>
-              </div>
-              <div class="segmentoArticle">
 
-                <!--
-
-                      el contenido del articulo sera dinamico con el click del listado de articulos.
-                -->
-
-              </div>
-              <div class="comentarios container">
-                  <label>Comentarios:</label>
-                  <div class="sectionComments">
-
-
-                  </div>
-                  <div class="escribir row">
-                    <form action="#" method="get">
-                        <label for="nombre" class="nombre" requiredd>Nombre:</label>
-                        <input type="text" id="nombre" class="inombre" placeholder="Nombre" required>
-                        <label for="email" class="email">Email:</label>
-                        <input type="text" id="email" class="iemail" placeholder="name@company.com" pattern="[A-Za-z0-9\.\+]+@[A-Za-z0-9]+\.[A-Za-z0-9\.]+" required>
-                        <label>Comentario: <small>máximo 150 palabras</small></label><small class="indicador">0</small>
-                        <textarea name="comment" id="message" cols="30" rows="10"></textarea>
-                        <button class="enviar">Enviar</button>
-                    </form>
-                  </div>
-
-              </div>
-        </div>
-
-        <!-- Listado de articulos --->
+<!-- Listado de articulos --->
         <div class="list-article">
 
             {% for blog in blogs_list %}

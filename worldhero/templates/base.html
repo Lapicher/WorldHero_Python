@@ -12,7 +12,119 @@
 
     {% include "includes/menu.html" %}
 
-    {% block posts %}{% endblock %}
+
+    {% block detalle %}
+    <!-- Plantilla Detalle --->
+        <div class="new_post">
+            <a href="/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
+        </div>
+        <div class="plantilla-detalle">
+              <div class="cerrar">
+                  <span class="icon-cross"></span>
+              </div>
+              <div class="user container">
+                  <div class="row">
+                    <figure class="picture-profile">
+                        <img  alt="">
+                    </figure>
+                  </div>
+                  <div class="row">
+                      <h1 class="name-user"></h1>
+                  </div>
+              </div>
+              <div class="segmentoArticle">
+
+                <!--
+
+                      el contenido del articulo sera dinamico con el click del listado de articulos.
+                -->
+
+              </div>
+              <div class="comentarios container">
+                  <label>Comentarios:</label>
+                  <div class="sectionComments">
+
+
+                  </div>
+                  <div class="escribir row">
+                    <form action="#" method="get">
+                        <label for="nombre" class="nombre" requiredd>Nombre:</label>
+                        <input type="text" id="nombre" class="inombre" placeholder="Nombre" required>
+                        <label for="email" class="email">Email:</label>
+                        <input type="text" id="email" class="iemail" placeholder="name@company.com" pattern="[A-Za-z0-9\.\+]+@[A-Za-z0-9]+\.[A-Za-z0-9\.]+" required>
+                        <label>Comentario: <small>máximo 150 palabras</small></label><small class="indicador">0</small>
+                        <textarea name="comment" id="message" cols="30" rows="10"></textarea>
+                        <button class="enviar">Enviar</button>
+                    </form>
+                  </div>
+
+              </div>
+        </div>
+    {% endblock %}
+
+    {% block posts %}
+        <!-- Listado de articulos --->
+        <div class="list-article">
+
+            {% for blog in blogs_list %}
+
+                    <div class="item-article">
+                      <!-- Articulo -->
+                        <div class="article container" data-id="{{ blog.pk }}" data-fecha="{{ blog.datePub }}">
+
+                            <div class="section-user row" data-user="{{ blog.owner.username }}">
+                                <div class="user col-3">
+                                    <figure class="picture-profile">
+                                        <img alt="image-profile" class="img-user">
+                                    </figure>
+                                </div>
+                                <div class="col-3">
+                                    <figcaption class="user-name">
+                                        {{ blog.owner.username }}
+                                    </figcaption>
+                                </div>
+                                <div class="fecha col-6">
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <div class="article-click">
+                                <div class="row cont-title">
+                                    <h1 class="title-article">
+                                        {{ blog.title }}
+                                    </h1>
+                                </div>
+
+                                <div class="img-article" style="background-image: url('/../media/{{ blog.image }}');">
+                                </div>
+                                <div class="cont-detalle-article">
+                                    <p class="text-article row">
+                                        {{ blog.intro }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="fav-comentarios">
+                                  <span class="icon-heart col-1"></span>
+                                  <span class="icon-bubbles col-1">21</span>
+                            </div>
+                        </div>
+                        <!-- Fin de Articulo-->
+                    </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="list-article paginacion">
+            <div class="container">
+              <div class="divVert">
+                  <a href="#ant" class="ant">Anterior</a>
+              </div>
+              <a href="#sig" class="sig">Siguiente</a>
+            </div>
+        </div>
+
+        <a href="#" class="scroll-up"></a>
+    {% endblock %}
 
     {% include "includes/footer.html" %}
 
