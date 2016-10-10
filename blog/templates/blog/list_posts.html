@@ -1,49 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-      <title>Destiny</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0"> <!--- Resposivo -->
-      <meta name="theme-color" content="#66A790">
-      <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
+{% extends "base.html" %}
 
-    <body class="">
-        <header>
-          <span class="icon-sandwich"></span>
-          <h1 class="titulo">Destiny</h1>
-          <span class="icon-lupa"></span>
-        </header>
-        <!-- Encabezado --->
-        <div class="header">
-            <div class="row superior">
-                <div class="access">
-                    <a href="/new_post">Nuevo post</a>
-                  <a href="#login" class="login">Ingresar</a>
-                  <a href="/register" class="register">Registro</a>
-                </div>
-                <div class="row">
-                    <input class="txt-buscar" type="search" placeholder="Buscar..">
-                </div>
-            </div>
+
+{% block posts %}
+        <div class="new_post">
+            <a href="/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
         </div>
-        <div class="categorias">
-            <div class="inferior">
-                <nav class="navbar">
-                  <ul class="lista-nav">
-
-                    {% for cat in category_list %}
-                        <li class="lista-item">
-                            <a href="./?category={{ cat.name }}">{{ cat.name }}</a>
-                        </li>
-                    {% endfor %}
-
-                  </ul>
-                </nav>
-            </div>
-        </div>
-
         <!-- Listado de articulos --->
         <div class="plantilla-detalle">
               <div class="cerrar">
@@ -68,7 +29,7 @@
 
               </div>
               <div class="comentarios container">
-                  <labe>Comentarios:</labe>
+                  <label>Comentarios:</label>
                   <div class="sectionComments">
 
 
@@ -146,22 +107,8 @@
               </div>
               <a href="#sig" class="sig">Siguiente</a>
             </div>
-
         </div>
 
         <a href="#" class="scroll-up"></a>
-        <div class="footer">
-            <footer>
-                <span>
-                    Destiny
-                </span>
-                <p class="autor">
-                    Nataly Contreras &copy; 2016
-                </p>
-            </footer>
-        </div>
 
-        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-    </body>
-
-</html>
+{% endblock %}

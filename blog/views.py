@@ -42,7 +42,7 @@ class HomeView(View):
 
         context = {'blogs_list': blogs[:4], 'category_list': categorys_totals}
 
-        return render(request, 'blog/index.html', context)
+        return render(request, 'blog/list_posts.html', context)
 
 
 class HomeUserView(View):
@@ -57,7 +57,7 @@ class HomeUserView(View):
         user_object = get_object_or_404(User, username=user)
         blogs = Blog.objects.all().order_by('-created_at').select_related('owner').filter(owner=user_object)
         context = {'blogs_list': blogs[:4], 'category_list': categorys_totals}
-        return render(request, 'blog/index.html', context)
+        return render(request, 'blog/list_posts.html', context)
 
 
 class BlogQueryset(object):

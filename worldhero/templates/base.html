@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Destiny</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0"> <!--- Resposivo -->
+      <meta name="theme-color" content="#66A790">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="">
+
+    {% include "includes/menu.html" %}
+
+    {% block posts %}{% endblock %}
+
+    {% include "includes/footer.html" %}
+
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

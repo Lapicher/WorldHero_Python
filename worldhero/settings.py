@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'categorias',
     'blog',
     'users',
+    'worldhero',
 ]
 
 MIDDLEWARE = [
