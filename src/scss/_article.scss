@@ -17,6 +17,9 @@
     &:hover{
         opacity: 0.7;
     }
+    @include if-is-phone{
+        right: 10px;
+    }
 }
 
 .list-article{
@@ -50,7 +53,6 @@
             margin-right: auto;
             margin-left: auto;
             margin-bottom: 20px;
-            //margin-bottom: 30px;
         }
     }
 }
@@ -127,7 +129,6 @@
             @include if-is-phone {
                 padding-left: 0;
             }
-
         }
         .fecha span{
             float: right;
@@ -139,7 +140,6 @@
                 width: 50%;
             }
         }
-
     }
 }
 .article{

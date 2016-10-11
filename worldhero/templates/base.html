@@ -8,9 +8,24 @@
       <meta name="theme-color" content="#66A790">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body class="">
+<body class="{% block cambiarFondo %}{% endblock %}">
 
     {% include "includes/menu.html" %}
+    <div class="categorias">
+        <div class="inferior">
+            <nav class="navbar">
+              <ul class="lista-nav">
+
+                {% for cat in category_list %}
+                    <li class="lista-item">
+                        <a href="{% block GoHome %}{% if homeUser%}./{% endif %}{% endblock %}?category={{ cat.name }}">{{ cat.name }}</a>
+                    </li>
+                {% endfor %}
+
+              </ul>
+            </nav>
+        </div>
+    </div>
 
 
     {% block detalle %}
@@ -18,53 +33,12 @@
         <div class="new_post">
             <a href="/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
         </div>
-        <div class="plantilla-detalle">
-              <div class="cerrar">
-                  <span class="icon-cross"></span>
-              </div>
-              <div class="user container">
-                  <div class="row">
-                    <figure class="picture-profile">
-                        <img  alt="">
-                    </figure>
-                  </div>
-                  <div class="row">
-                      <h1 class="name-user"></h1>
-                  </div>
-              </div>
-              <div class="segmentoArticle">
 
-                <!--
-
-                      el contenido del articulo sera dinamico con el click del listado de articulos.
-                -->
-
-              </div>
-              <div class="comentarios container">
-                  <label>Comentarios:</label>
-                  <div class="sectionComments">
-
-
-                  </div>
-                  <div class="escribir row">
-                    <form action="#" method="get">
-                        <label for="nombre" class="nombre" requiredd>Nombre:</label>
-                        <input type="text" id="nombre" class="inombre" placeholder="Nombre" required>
-                        <label for="email" class="email">Email:</label>
-                        <input type="text" id="email" class="iemail" placeholder="name@company.com" pattern="[A-Za-z0-9\.\+]+@[A-Za-z0-9]+\.[A-Za-z0-9\.]+" required>
-                        <label>Comentario: <small>máximo 150 palabras</small></label><small class="indicador">0</small>
-                        <textarea name="comment" id="message" cols="30" rows="10"></textarea>
-                        <button class="enviar">Enviar</button>
-                    </form>
-                  </div>
-
-              </div>
-        </div>
     {% endblock %}
 
     {% block posts %}
         <!-- Listado de articulos --->
-        <div class="list-article">
+        <div class="list-article {% block ocultarListado %}{% endblock %}">
 
             {% for blog in blogs_list %}
 
@@ -114,7 +88,7 @@
 
         </div>
 
-        <div class="list-article paginacion">
+        <div class="list-article paginacion {% block ocultarPaginacion %}{% endblock %}">
             <div class="container">
               <div class="divVert">
                   <a href="#ant" class="ant">Anterior</a>

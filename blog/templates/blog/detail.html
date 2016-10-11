@@ -1,23 +1,28 @@
 {% extends "base.html" %}
 
-
+{% block cambiarFondo %}change-background-color{% endblock %}
+{% block GoHome %}../{% endblock %}
 {% block detalle %}
 <!-- Plantilla Detalle --->
         <div class="new_post">
             <a href="/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
         </div>
-        <div class="plantilla-detalle mostrar-detalle" data-id="">
+        <div class="plantilla-detalle mostrar-detalle" data-id="{{ post.pk }}">
               <div class="cerrar">
                   <span class="icon-cross"></span>
               </div>
               <div class="user container">
                   <div class="row">
                     <figure class="picture-profile">
-                        <img  alt="" src="http://mascotafiel.com/wp-content/uploads/2016/03/gatos-adivinos.jpg">
+                        <img  alt="" src="{% if post.owner.profile.img == '' %}
+                                                /../static/image/profile-placeholder.png
+                                          {% else %}
+                                                {{post.owner.profile.img}}
+                                          {% endif %}">
                     </figure>
                   </div>
                   <div class="row">
-                      <h1 class="name-user"></h1>
+                      <h1 class="name-user">{{ post.owner.username }}</h1>
                   </div>
               </div>
               <div class="segmentoArticle">
@@ -27,17 +32,18 @@
                       el contenido del articulo sera dinamico con el click del listado de articulos.
                 -->
                     <div class="title-article">
+                        {{ post.title }}
                     </div>
                     <div class="fecha-creacion">
                         <strong>Creado:</strong>
-                        <span></span>
+                        <span>{{ post.created_at }}</span>
                     </div>
-                    <div class="img-article-header">
+                    <div class="img-article-header" style="background-image: url('/../media/{{ post.image }}')">
                     </div>
                     <article class="article-detail">
 
                         <!-- contenido de la base de datos -->
-                        hoal
+                        {{ post.body | safe }}
 
                     </article>
 
@@ -50,7 +56,7 @@
                   </div>
                   <div class="escribir row">
                     <form action="#" method="get">
-                        <label for="nombre" class="nombre" requiredd>Nombre:</label>
+                        <label for="nombre" class="nombre" required>Nombre:</label>
                         <input type="text" id="nombre" class="inombre" placeholder="Nombre" required>
                         <label for="email" class="email">Email:</label>
                         <input type="text" id="email" class="iemail" placeholder="name@company.com" pattern="[A-Za-z0-9\.\+]+@[A-Za-z0-9]+\.[A-Za-z0-9\.]+" required>
@@ -62,4 +68,7 @@
               </div>
         </div>
 {% endblock %}
+
+{% block ocultarListado %} ocultar-detalle {% endblock %}
+{% block ocultarPaginacion %} ocultar-detalle {% endblock %}
 

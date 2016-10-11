@@ -15,7 +15,12 @@
                             <div class="section-user row" data-user="{{ blog.owner.username }}">
                                 <div class="user col-3">
                                     <figure class="picture-profile">
-                                        <img alt="image-profile" class="img-user">
+                                        <img alt="image-profile" class="img-user"
+                                             src="{% if blog.owner.profile.img == '' %}
+                                                        /../static/image/profile-placeholder.png
+                                                  {% else %}
+                                                        {{blog.owner.profile.img}}
+                                                  {% endif %}">
                                     </figure>
                                 </div>
                                 <div class="col-3">

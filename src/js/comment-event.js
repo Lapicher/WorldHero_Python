@@ -1,17 +1,6 @@
 var $=require('jquery');
 //var apiClient=require('api-client');
 
-$('.cerrar').on("click",function(){
-    $('.icon-cross').toggleClass('closeup');
-    $('.plantilla-detalle').removeClass('mostrar-detalle');
-    $('.list-article').removeClass('ocultar-detalle');
-    $('body').removeClass('change-background-color');
-    $(document).data("loadedComments","false");
-    $('.sectionComments').html("");
-    $('.segmentoArticle').html("");
-    $('.indicador').text("0");
-    //alert("clic");
-});
 $('form').on("submit",function(){
     var self=this;
 
@@ -68,33 +57,36 @@ $('form').on("submit",function(){
     return false;
 });
 // evento keyup para evitar que escriba mas de 150 palabras.
-var mensaje=document.getElementById('message');
-mensaje.setAttribute("onpaste","return false;");
-mensaje.palabras=150;
-mensaje.addEventListener("keyup",function(evt){
+if ($('#message').length > 0) {
+    var mensaje=document.getElementById('message');
+    mensaje.setAttribute("onpaste","return false;");
+    mensaje.palabras=150;
+    mensaje.addEventListener("keyup",function(evt){
 
-      var arrPalabras=$(this).val().toString().split(' ');
-      var totalPalabras=0;
-      for(var i in arrPalabras){
-          if(arrPalabras[i].length!=0 && arrPalabras[i]!="\n"){
-              var enters=arrPalabras[i].split("\n");
-              for(var j in enters){
-                  if(enters[j].length!=0)
-                      totalPalabras++;
+          var arrPalabras=$(this).val().toString().split(' ');
+          var totalPalabras=0;
+          for(var i in arrPalabras){
+              if(arrPalabras[i].length!=0 && arrPalabras[i]!="\n"){
+                  var enters=arrPalabras[i].split("\n");
+                  for(var j in enters){
+                      if(enters[j].length!=0)
+                          totalPalabras++;
+                  }
               }
           }
-      }
-      if(totalPalabras>this.palabras && evt.keyCode!=8){
-          var texto=$(this).val().toString();
-          $(this).val(texto.substring(0,texto.length-1));
-      }
-      else{
-          if(totalPalabras<=this.palabras){
-              $('.indicador').css("color","red");
-              $('.indicador').text(totalPalabras);
+          if(totalPalabras>this.palabras && evt.keyCode!=8){
+              var texto=$(this).val().toString();
+              $(this).val(texto.substring(0,texto.length-1));
           }
-      }
-});
+          else{
+              if(totalPalabras<=this.palabras){
+                  $('.indicador').css("color","red");
+                  $('.indicador').text(totalPalabras);
+              }
+          }
+    });
+}
+
 
 $(window).on("scroll",function(){
       var scroll = $(window).scrollTop();
@@ -139,12 +131,4 @@ $(window).on("scroll",function(){
                 }
             });
        }
-/*
-      if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        alert("bottom!");
-        console.log($(document).height());
-       // getData();
-      }
-*/
-
 });

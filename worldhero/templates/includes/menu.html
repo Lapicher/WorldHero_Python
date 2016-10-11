@@ -15,18 +15,3 @@
         </div>
     </div>
 </div>
-<div class="categorias">
-    <div class="inferior">
-        <nav class="navbar">
-          <ul class="lista-nav">
-
-            {% for cat in category_list %}
-                <li class="lista-item">
-                    <a href="./?category={{ cat.name }}">{{ cat.name }}</a>
-                </li>
-            {% endfor %}
-
-          </ul>
-        </nav>
-    </div>
-</div>
