@@ -108,6 +108,7 @@
             width: 60px;
             img{
                 height: 60px;
+                width: 60px;
                 display: inline-block;
                 border-radius: 50%;
                 @include if-is-phone {

@@ -12,7 +12,6 @@ $('.article-click').on("click",function(){
     var userArticle=$(this).parent().children().data().user;
 
     window.location = userArticle+"/"+id;
-    //mostrarArticulo(self,id,userArticle,0);
 });
 
 
@@ -42,7 +41,7 @@ $('.icon-bubbles').on("click",function(){
     var id=$(self).parent().data().id;
     var userArticle=$(self).parent().children().data().user;
 
-    mostrarArticulo(self,id,userArticle, $(document).height());
+    window.location = userArticle+"/"+id;
     //console.log("scroll hasta abajo");
 });
 //evento cuando no carga imagen de perfil pone por defecto un placeholder.

@@ -7,7 +7,7 @@ from users.models import Profile
 
 class UserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
-    username = forms.CharField(label= "Nombre de Usuario")
+    username = forms.CharField(label="Nombre de Usuario")
 
     class Meta:
         model = User

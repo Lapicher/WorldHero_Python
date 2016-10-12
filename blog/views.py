@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from django.views import View
 
+from blog.forms import BlogForm
 from blog.models import Blog
 from categorias.models import Category
 
@@ -34,13 +35,13 @@ class HomeView(View):
         categoria = request.GET.get('category')
         if categoria is None:
 
-            blogs = Blog.objects.all().order_by('-created_at').select_related('owner')
+            blogs = Blog.objects.all().order_by('-datePub').select_related('owner')
 
         else:
             object_category = get_object_or_404(Category, name=categoria)
-            blogs = Blog.objects.filter(type=object_category).order_by('-created_at')
+            blogs = Blog.objects.filter(type=object_category).order_by('-datePub')
 
-        context = {'blogs_list': blogs[:4], 'category_list': categorys_totals}
+        context = {'blogs_list': blogs, 'category_list': categorys_totals}
 
         return render(request, 'blog/list_posts.html', context)
 
@@ -56,7 +57,7 @@ class HomeUserView(View):
         categorys_totals = Category.objects.all()
         user_object = get_object_or_404(User, username=user)
         blogs = Blog.objects.all().order_by('-created_at').select_related('owner').filter(owner=user_object)
-        context = {'blogs_list': blogs[:4], 'category_list': categorys_totals, 'homeUser': True}
+        context = {'blogs_list': blogs, 'category_list': categorys_totals, 'homeUser': True}
         return render(request, 'blog/list_posts.html', context)
 
 
@@ -98,3 +99,37 @@ class DetailView(View):
         return render(request, 'blog/detail.html', context)
         # return HttpResponse('/blog/detail.html')
 
+class CrearPostView(View):
+
+    def get(self, request):
+        """
+        Renderiza la plantilla para crear un post y publicarlo.
+        :param request:
+        :return:
+        """
+        message= ""
+        blog_form= BlogForm()
+        categorias = Category.objects.all()
+        context = {'form': blog_form, 'message': message, 'category_list': categorias}
+        return render(request, 'blog/create_post.html', context)
+
+    def post(self, request):
+        """
+        Presenta el formulario para crear una foto y en caso de que la peticion sea post, la valida y la crea en caso de que
+        sea valida.
+        :param request:
+        :return:
+        """
+
+        message = ""
+        post_with_user = Blog(owner=request.user)
+        post_form = BlogForm(request.POST, request.FILES, instance=post_with_user)
+
+        if post_form.is_valid():
+
+            new_post = post_form.save()
+            post_form = BlogForm()  # limpia los campos para que se pueda crear una nueva foto.
+            message = "Post creado satisfactoriamente. Ver post: <a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk )
+        categorias = Category.objects.all()
+        context = {'form': post_form, 'message': message, 'category_list': categorias}
+        return render(request, 'blog/create_post.html', context)

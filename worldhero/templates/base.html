@@ -30,8 +30,8 @@
 
     {% block detalle %}
     <!-- Plantilla Detalle --->
-        <div class="new_post">
-            <a href="/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
+        <div class="new_post {% block ocultaCreaPost %}{% endblock %}">
+            <a href="../blogs/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
         </div>
 
     {% endblock %}

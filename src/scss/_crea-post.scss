@@ -1,0 +1,30 @@
+.ocultarBotonCrear{
+    display: none;
+}
+
+.crearPost-form{
+
+    position: relative;
+    top: 150px;
+    left: 40px;
+    p{
+        padding-top: 30px;
+    }
+    button{
+        font-size: $font-size-login;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: $color-brackground-header;
+        border-radius: 5px;
+        &:hover{
+            background-color: $color-hover;
+        }
+    }
+    h1{
+        font-size: 25pt;
+    }
+    span{
+        color: #0b7215;
+    }
+
+}

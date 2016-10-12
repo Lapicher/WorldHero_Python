@@ -1,7 +1,7 @@
 var $=require('jquery');
 //var apiClient=require('api-client');
 
-$('form').on("submit",function(){
+$('.escribir > form').on("submit",function(){
     var self=this;
 
     //terminada la validacion de los campos se prosigue a enviar el comentario.
