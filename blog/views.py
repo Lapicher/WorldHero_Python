@@ -57,8 +57,8 @@ class HomeUserView(View):
         categorys_totals = Category.objects.all()
         user_object = get_object_or_404(User, username=user)
         blogs = Blog.objects.all().order_by('-created_at').select_related('owner').filter(owner=user_object)
-        context = {'blogs_list': blogs, 'category_list': categorys_totals, 'homeUser': True}
-        return render(request, 'blog/list_posts.html', context)
+        context = {'blogs_list': blogs, 'category_list': categorys_totals, 'homeUser': True, 'usuario': user_object}
+        return render(request, 'users/profile.html', context)
 
 
 class BlogQueryset(object):

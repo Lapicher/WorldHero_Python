@@ -1,0 +1,27 @@
+{% extends 'blog/list_posts.html' %}
+
+{% block perfil %}
+    <div class="profile container">
+        <div class="foto col-5">
+            <img src="{% if usuario.profile.img == '' %}
+                            /../static/image/profile-placeholder.png
+                      {% else %}
+                            {{ usuario.profile.img}}
+                      {% endif %}" alt="{{ usuario.username }}">
+
+        </div>
+        <div class="datos col-7">
+            <label>Nombre: </label>
+            <span class="row">
+                {{ user.first_name }} {{ user.last_name }}
+            </span>
+            <label>Acerca de mi:</label>
+            <textarea class="row" name="" id="" cols="50" rows="8">
+                Estudiante de la universidad de Oaxaca.
+            </textarea>
+            <span class="row">Actualizar foto:</span>
+
+        </div>
+    </div>
+
+{% endblock %}
