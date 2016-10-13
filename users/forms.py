@@ -14,10 +14,10 @@ class UserForm(ModelForm):
         fields = ['first_name', 'last_name', 'username', 'password']
 
 
-
 class ProfileForm(ModelForm):
 
     class Meta:
 
         model = Profile
         fields = ['info', 'img', 'user']
+

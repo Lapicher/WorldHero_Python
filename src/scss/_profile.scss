@@ -27,6 +27,16 @@
             font-size: 10pt;
         }
     }
+    .actualizar{
+        font-size: 9pt;
+        color: white;
+        background-color: $color-brackground-header;
+        border-radius: 5px;
+        &:hover{
+            background-color: $color-hover;
+        }
+
+    }
 
     @include if-is-phone {
         top: 80px;
