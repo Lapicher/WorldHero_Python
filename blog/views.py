@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from django.utils.decorators import method_decorator
 from django.views import View
 
 from blog.forms import BlogForm
@@ -22,6 +24,7 @@ class HomeRedirect(View):
 
 
 class HomeView(View):
+    @method_decorator(login_required())
     def get(self, request):
         """
         Renderiza el home con un listado de los blogs.

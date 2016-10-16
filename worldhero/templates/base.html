@@ -10,7 +10,25 @@
 </head>
 <body class="{% block cambiarFondo %}{% endblock %}">
 
-    {% include "includes/menu.html" %}
+    <header>
+      <span class="icon-sandwich"></span>
+      <h1 class="titulo">Destiny</h1>
+      <span class="icon-lupa"></span>
+    </header>
+    <!-- Encabezado --->
+    <div class="header">
+        <div class="row superior">
+            <div class="access">
+              <a href="#login" class="login">Ingresar</a>
+              <a href="/register" class="register">Registro</a>
+            </div>
+            <div class="row {% block ocultarBuscar %}{% endblock %}">
+                <input class="txt-buscar" type="search" placeholder="Buscar..">
+            </div>
+        </div>
+    </div>
+
+
     <div class="categorias">
         <div class="inferior">
             <nav class="navbar">

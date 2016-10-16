@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,15 +8,20 @@
 </head>
 <body>
 
+{% block posts %}
+    {% block ocultaCreaPost %} ocultarBotonCrear {% endblock %}
+    {% block ocultarBuscar %}ocultarBuscar{% endblock %}
 
-    <h1>Registrar Usuario</h1>
+    <div class="registro_user">
 
-    {{ message | safe }}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Registrar Usuario</button>
-    </form>
 
-</body>
-</html>
+        <h1>Registrar Usuario</h1>
+
+        {{ message | safe }}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Registrar Usuario</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+.registro_user{
+    display: block;
+    position: relative;
+    top: 100px;
+
+    p{
+        padding-top: 20px;
+    }
+    button{
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: $color-brackground-header;
+        border-radius: 5px;
+        &:hover{
+            background-color: $color-hover;
+        }
+    }
+}
