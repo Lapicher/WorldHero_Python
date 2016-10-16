@@ -50,6 +50,7 @@ class HomeView(View):
 
 
 class HomeUserView(View):
+    @method_decorator(login_required())
     def get(self, request, user):
         """
         Renderiza el home con un listado de los blogs.
@@ -81,7 +82,7 @@ class BlogQueryset(object):
 
 
 class DetailView(View):
-
+    @method_decorator(login_required())
     def get(self, request, pk, user):
         """
         Renderiza el detalle del post de un usuario espesifico.
@@ -103,7 +104,7 @@ class DetailView(View):
         # return HttpResponse('/blog/detail.html')
 
 class CrearPostView(View):
-
+    @method_decorator(login_required())
     def get(self, request):
         """
         Renderiza la plantilla para crear un post y publicarlo.

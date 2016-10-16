@@ -1,0 +1,16 @@
+.login_user{
+    top: 100px;
+    position: relative;
+    p{
+        margin-top: 20px;
+    }
+    button{
+          margin-top: 30px;
+          padding: 10px 20px;
+          background-color: $color-brackground-header;
+          border-radius: 5px;
+          &:hover{
+              background-color: $color-hover;
+          }
+      }
+}

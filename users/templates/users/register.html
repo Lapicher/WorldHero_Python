@@ -17,7 +17,7 @@
 
         <h1>Registrar Usuario</h1>
 
-        {{ message | safe }}
+        <h2>{{ message }}</h2>
         <form action="" method="post">
             {% csrf_token %}
             {{ form.as_p }}

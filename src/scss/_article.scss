@@ -113,6 +113,7 @@
                 border-radius: 50%;
                 @include if-is-phone {
                     height: 50px;
+                    width: 50px;
                 }
             }
         }
