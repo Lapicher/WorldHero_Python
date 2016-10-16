@@ -6,26 +6,26 @@
             <img src="{% if usuario.profile.img == '' %}
                             /../static/image/profile-placeholder.png
                       {% else %}
-                            {{ usuario.profile.img}}
+                            /../media/{{ usuario.profile.img}}
                       {% endif %}" alt="{{ usuario.username }}">
 
         </div>
         <div class="datos col-7">
             <form action="" class="form-profile" method="post" enctype="multipart/form-data">
                {% csrf_token %}
-                <input type="hidden" class="usuario" value="{{ usuario.username }}">
+
                 <label>Nombre: </label>
                 <span class="row">
                     {{ usuario.first_name }} {{ usuario.last_name }}
                 </span>
                 <label>Acerca de mi:</label>
-                <input type="hidden" id="id_user" name="user" value="{{ usuario.pk }}">
-                <textarea class="row" name="" id="" cols="50" rows="8" id="id_info" name="info">
+
+                <textarea class="row" name="info" id="id_info" cols="50" rows="8">
                     {{ usuario.profile.info }}
                 </textarea>
                 <div class="row">
                      <input class="col-8" type="file" id="id_img" name="img"/>
-                     <button class="actualizar col-3">Actualizar</button>
+                     <!--<button class="actualizar col-3">Actualizar</button>-->
                 </div>
             </form>
         </div>

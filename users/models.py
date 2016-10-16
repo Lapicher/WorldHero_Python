@@ -6,7 +6,7 @@ from django.db import models
 
 class Profile(models.Model):
 
-    info = models.CharField(max_length=30, null=True)
+    info = models.TextField(max_length=30, null=True)
     user = models.OneToOneField(User)
     img = models.ImageField(upload_to='uploads/profiles', null=True)
 

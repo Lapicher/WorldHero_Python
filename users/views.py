@@ -10,6 +10,7 @@ from django.views import View
 from pip._vendor.requests import Response
 
 from users.forms import UserForm, ProfileForm
+from users.models import Profile
 
 
 class UserRegisterView(View):
@@ -60,8 +61,9 @@ class ActualizarUser(View):
         message = ""
 
         if request.is_ajax():
-            usuario_owner = User(pk=request.POST.get('user'))
-            form = ProfileForm(request.POST, request.FILES, user=request.user)
+            #usuario_owner = User(pk=request.user)
+            profile_of_user = Profile(user=request.user)
+            form = ProfileForm(request.POST, request.FILES, instance=profile_of_user)
 
             if form.is_valid():
                 form.save()

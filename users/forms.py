@@ -16,8 +16,10 @@ class UserForm(ModelForm):
 
 class ProfileForm(ModelForm):
 
-    class Meta:
+    info = forms.Textarea()
 
+    class Meta:
         model = Profile
-        fields = ['info', 'img', 'user']
+        fields = ['info', 'img']
+        exclude = ['user']
 
