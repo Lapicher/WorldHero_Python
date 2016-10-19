@@ -62,7 +62,10 @@ class HomeUserView(View):
         """
         categorys_totals = Category.objects.all()
         user_object = get_object_or_404(User, username=user)
-        blogs = Blog.objects.all().order_by('-created_at').select_related('owner').filter(owner=user_object)
+        if user_object==request.user:
+            blogs = Blog.objects.all().order_by('-created_at').select_related('owner').filter(owner=user_object)
+        else:
+            blogs = Blog.objects.filter(datePub__lte=datetime.today()).order_by('-datePub')
         context = {'blogs_list': blogs, 'category_list': categorys_totals, 'homeUser': True, 'usuario': user_object}
         return render(request, 'users/profile.html', context)
 
