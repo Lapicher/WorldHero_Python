@@ -5,6 +5,7 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
+from django.utils.datetime_safe import datetime
 from django.utils.decorators import method_decorator
 from django.views import View
 
@@ -38,11 +39,12 @@ class HomeView(View):
         categoria = request.GET.get('category')
         if categoria is None:
 
-            blogs = Blog.objects.all().order_by('-datePub').select_related('owner')
+            hoy = datetime.today()
+            blogs = Blog.objects.all().filter(datePub__lte=hoy).order_by('-datePub').select_related('owner')
 
         else:
             object_category = get_object_or_404(Category, name=categoria)
-            blogs = Blog.objects.filter(type=object_category).order_by('-datePub')
+            blogs = Blog.objects.filter(type=object_category).filter(datePub__lte=datetime.today()).order_by('-datePub')
 
         context = {'blogs_list': blogs, 'category_list': categorys_totals}
 
@@ -68,16 +70,16 @@ class HomeUserView(View):
 class BlogQueryset(object):
 
     @staticmethod
+    def get_posts_all():
+        possible_photos = Blog.objects.all().select_related("owner")
+        return possible_photos
+
+    @staticmethod
     def get_posts_by_user(user):
         possible_photos = Blog.objects.all().select_related("owner")
-        """
         if not user.is_authenticated():
-            possible_photos = possible_photos.filter(visibility=VISIBILITY_PUBLIC)
-        else:
-            # query mas avanzada es como decir en sql: visibility='public' or owner='usuario'
-            possible_photos = possible_photos.filter(Q(visibility=VISIBILITY_PUBLIC) | Q(owner=user))
-        return possible_photos
-        """
+            possible_photos = possible_photos.filter(datePub__lte=datetime.date.today())
+
         return possible_photos
 
 
@@ -90,7 +92,7 @@ class DetailView(View):
         :return:
         """
         user_object = get_object_or_404(User, username=user)  # consulta al usuario a actualizar.
-        blogs = BlogQueryset.get_posts_by_user(request.user).filter(pk=pk, owner=user_object)
+        blogs = BlogQueryset.get_posts_all().filter(pk=pk, owner=user_object)
         if len(blogs) == 0:
             return HttpResponseNotFound("El blog que buscas no existe")
         elif len(blogs) > 1:
