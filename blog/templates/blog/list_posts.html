@@ -11,7 +11,7 @@
 
                     <div class="item-article">
                       <!-- Articulo -->
-                        <div class="article container" data-id="{{ blog.pk }}" data-fecha="{{ blog.datePub }}">
+                        <div class="article container" data-id="{{ blog.pk }}" data-fecha="{{ blog.datePub | date:"d-m-Y h:m:s a"}} ">
 
                             <div class="section-user row" data-user="{{ blog.owner.username }}">
                                 <div class="user col-3">
