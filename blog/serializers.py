@@ -9,6 +9,8 @@ class BlogSerializer(serializers.ModelSerializer):
         default=serializers.CurrentUserDefault()
     )
 
+    image = serializers.CharField()
+
     class Meta:
         model = Blog
 
@@ -17,4 +19,6 @@ class BlogListSerializer(BlogSerializer):
 
     class Meta:
         model = Blog
-        fields = ("title", "image", "intro", "datePub", "owner", )
+        fields = ("title", "image", "intro", "datePub", )
+
+
