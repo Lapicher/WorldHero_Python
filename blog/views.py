@@ -108,6 +108,7 @@ class DetailView(View):
         return render(request, 'blog/detail.html', context)
         # return HttpResponse('/blog/detail.html')
 
+
 class CrearPostView(View):
     @method_decorator(login_required())
     def get(self, request):

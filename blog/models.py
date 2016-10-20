@@ -5,6 +5,15 @@ from django.db import models
 from categorias.models import Category
 
 
+VISIBILITY_PUBLIC = "PUB"
+VISIBILITY_PRIVATE = "PRI"
+
+VISIBILITY = (
+    (VISIBILITY_PUBLIC, 'Publica'),
+    (VISIBILITY_PRIVATE, 'Privada')
+)
+
+
 class Blog(models.Model):
 
     owner = models.ForeignKey(User)
@@ -16,6 +25,7 @@ class Blog(models.Model):
     datePub = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    visibility = models.CharField(max_length=3, choices=VISIBILITY, default=VISIBILITY_PUBLIC)
 
     def __str__(self):
         return self.title

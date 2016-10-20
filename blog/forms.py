@@ -14,6 +14,6 @@ class BlogForm(ModelForm):
 
     class Meta:
         model = Blog
-        fields = ['title', 'intro', 'body', 'image', 'datePub', 'type']
+        fields = ['title', 'intro', 'body', 'image', 'datePub', 'type', 'visibility', ]
         exclude = ['owner']
 
