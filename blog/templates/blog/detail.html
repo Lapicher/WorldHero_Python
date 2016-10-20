@@ -36,7 +36,12 @@
                         <strong>Creado:</strong>
                         <span>{{ post.created_at }}</span>
                     </div>
-                    <div class="img-article-header" style="background-image: url('/../media/{{ post.image }}')">
+                    <div class="img-article-header"
+                         {% if "http" in post.image.name %}
+                            style="background-image: url('{{ post.image }}');">
+                         {% else %}
+                            style="background-image: url('/../media/{{ post.image }}');">
+                         {% endif %}
                     </div>
                     <article class="article-detail">
 

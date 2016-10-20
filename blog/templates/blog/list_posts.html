@@ -41,7 +41,13 @@
                                     </h1>
                                 </div>
 
-                                <div class="img-article" style="background-image: url('/../media/{{ blog.image }}');">
+                                <div class="img-article"
+                                     {% if "http" in blog.image.name %}
+                                        style="background-image: url('{{ blog.image }}');">
+                                     {% else %}
+                                        style="background-image: url('/../media/{{ blog.image }}');">
+                                     {% endif %}
+
                                 </div>
                                 <div class="cont-detalle-article">
                                     <p class="text-article row">
