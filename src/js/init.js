@@ -21,7 +21,7 @@ $(".article").each(function() {
 
      //colocar fecha de creacion del articulo en formato moment 2 years ago.
     var creado=$(this).data().fecha.toString();
-    var fecha=moment(creado,"MMMM Do, YYYY, h:mm:ss a").format();
+    var fecha=moment(creado,"DD-MM-YYYY h:mm:ss a").format();
     var fechaFomart=moment(fecha).fromNow();
     $(this).find(".fecha > span").text(fechaFomart);
     //console.log(moment(fecha).format('LLL'));

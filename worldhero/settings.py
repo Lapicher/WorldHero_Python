@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'users',
     'worldhero',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -154,5 +155,8 @@ LOGIN_URL = '/login'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.BasicAuthentication',
+     ),
     # 'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
