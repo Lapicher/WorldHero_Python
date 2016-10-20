@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
@@ -10,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from blog.forms import BlogForm
-from blog.models import Blog
+from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
 from categorias.models import Category
 
 
@@ -25,10 +26,12 @@ class HomeRedirect(View):
 
 
 class HomeView(View):
-    @method_decorator(login_required())
+
     def get(self, request):
         """
         Renderiza el home con un listado de los blogs.
+        si el usuario no se encuentra autentificado solo podra ver los posts publicos.
+        si el usuario si se encuentra autentificado podra ver toso los posts publicos y privados donde sea propietario.
 
         :param request: objeto HttpRequest con los datos de la peticion
         :return: objecto HttpResponse con los datos de la respuesta
@@ -37,14 +40,18 @@ class HomeView(View):
         categorys_totals = Category.objects.all()
 
         categoria = request.GET.get('category')
-        if categoria is None:
+        hoy = datetime.today()
+        blogs = Blog.objects.all().select_related('owner').filter(datePub__lte=hoy).order_by('-datePub')
 
-            hoy = datetime.today()
-            blogs = Blog.objects.all().filter(datePub__lte=hoy).order_by('-datePub').select_related('owner')
-
+        if not request.user.is_authenticated:
+            blogs = blogs.filter(visibility=VISIBILITY_PUBLIC)
         else:
+            blogs = blogs.exclude(Q(visibility=VISIBILITY_PRIVATE) & ~Q(owner=request.user))
+
+        if categoria is not None:
+
             object_category = get_object_or_404(Category, name=categoria)
-            blogs = Blog.objects.filter(type=object_category).filter(datePub__lte=datetime.today()).order_by('-datePub')
+            blogs = blogs.filter(type=object_category)
 
         context = {'blogs_list': blogs, 'category_list': categorys_totals}
 
@@ -52,20 +59,23 @@ class HomeView(View):
 
 
 class HomeUserView(View):
-    @method_decorator(login_required())
+
     def get(self, request, user):
         """
         Renderiza el home con un listado de los blogs.
+        si el usuario
 
         :param request: objeto HttpRequest con los datos de la peticion
         :return: objecto HttpResponse con los datos de la respuesta
         """
         categorys_totals = Category.objects.all()
         user_object = get_object_or_404(User, username=user)
-        if user_object==request.user:
-            blogs = Blog.objects.all().order_by('-created_at').select_related('owner').filter(owner=user_object)
+        blogs = Blog.objects.all().filter(owner=user_object)
+        if request.user.is_authenticated:
+            blogs = blogs.order_by('-created_at').select_related('owner')
         else:
-            blogs = Blog.objects.filter(datePub__lte=datetime.today()).order_by('-datePub')
+            blogs = blogs.filter(datePub__lte=datetime.today()).order_by('-datePub').filter(visibility=VISIBILITY_PUBLIC)
+
         context = {'blogs_list': blogs, 'category_list': categorys_totals, 'homeUser': True, 'usuario': user_object}
         return render(request, 'users/profile.html', context)
 
