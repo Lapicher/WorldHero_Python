@@ -22,3 +22,8 @@ class BlogListSerializer(BlogSerializer):
         fields = ("title", "image", "intro", "datePub", )
 
 
+class BlogDetailSerializer(BlogSerializer):
+
+    class Meta:
+        model = Blog
+        fields = ("title", "intro")

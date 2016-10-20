@@ -7,6 +7,7 @@ from blog.api import BlogViewSet
 router = DefaultRouter()
 router.register('api/1.0/blogs', BlogViewSet, 'api_blogs_')
 
+
 urlpatterns = [
 
     url(r'^$', HomeRedirect.as_view(), name="home"),
