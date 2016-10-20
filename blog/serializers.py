@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from blog.models import Blog
+from blog.validators import formatURLImage
 
 
 class BlogSerializer(serializers.ModelSerializer):
@@ -9,7 +10,7 @@ class BlogSerializer(serializers.ModelSerializer):
         default=serializers.CurrentUserDefault()
     )
 
-    image = serializers.CharField()
+    image = serializers.CharField(validators=[formatURLImage])
 
     class Meta:
         model = Blog
