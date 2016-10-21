@@ -50,6 +50,11 @@ class HomeView(View):
             object_category = get_object_or_404(Category, name=categoria)
             blogs = blogs.filter(type=object_category)
 
+        # agrego busqueda de posts por titulo del post o contenido en el body
+        search = request.GET.get('search')
+        if search is not None:
+            blogs = blogs.filter(Q(title__contains=search) | Q(body__contains=search) | Q(intro__contains=search))
+
         context = {'blogs_list': blogs, 'category_list': categorys_totals}
 
         return render(request, 'blog/list_posts.html', context)
