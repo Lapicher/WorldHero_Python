@@ -3,7 +3,7 @@
 Intrucciones para el correcto funcionamiento del sistema.
 
 ## Instalación de Python:
-Lo primero que necesitamos para instalar es Python. Version utilizada: 3.5.2 ([descarga e instrucciones](https://www.continuum.io/downloads)).
+Lo primero que necesitamos para instalar es Python. Versión utilizada: 3.5.2 ([descarga e instrucciones](https://www.continuum.io/downloads)).
 
 Para comprobar que tienes la versión de Python correcta, una vez instalado abre una ventana de comandos, escribe `python` y presionar enter.
 
@@ -26,7 +26,7 @@ Crear el entorno virutal.
 
 Ya creado el entorno virtual necesitaremos activarlo para que el proyecto trabaje desde ese entorno e instale las dependencias en el mismo entorno.
 
-Para activar situarse en el directorio donde se haya creado el entorno virutal y ejecutar la siguiente comando:
+Para activar situarse en el directorio donde se haya creado el entorno virtual y ejecutar la siguiente comando:
 
 ```
  ✝  ~/Documents/Nataly/KeepCoding/Python_y_Django/WorldHero>  source env/bin/activate
@@ -52,7 +52,7 @@ Adicional para agregar mas dependencias al archivo:
 	
 	> pip freeze > requirements.txt 
 
-Tambien se utilizo gulp para el minimizado y optimizacion de imagenes, si se requiere utilizar, se necesita instalar las dependencias de node con (Opcional):
+Tambien se utilizo gulp para el minimizado y optimización de imagenes, si se requiere utilizar, se necesita instalar las dependencias de node con (Opcional):
 	
 	> npm install
 	
@@ -60,7 +60,7 @@ Y listo para ejecutar gulp:
 	
 	> gulp
 
-## 2. Primera configuracion inicial:
+## 2. Primera configuración inicial:
 
 
 Crear superusuario:
@@ -71,21 +71,21 @@ Crear las migraciones de los modelos.
 
 	python3 manage.py makemigrations
 	
-para aplicar la migracion y crea las tablas en la base de datos en sqlite:
+para aplicar la migración y crea las tablas en la base de datos en sqlite:
 	
 	python manage.py migrate
 	
-## 3. Configuracion finales:
+## 3. Configuración finales:
 
-Levantar el servidor web de desarrollo y listo, estaria ya corriendo el proyecto Worldhero en Django:
+Levantar el servidor web de desarrollo y listo, estaría ya corriendo el proyecto Worldhero en Django:
 
 	python manage.py runserver
 	
 ###***IMPORTANTE***
 
-Ya ingresado en el administrador de Django, crear desde ahi las categorias de los posts.
+Ya ingresado en el administrador de Django, crear desde ahí las categorías de los posts.
 
-El sistema permite registrarse e iniciar sesion, ya iniciado sesion puede crear posts, listar los posts publicados y ver detalle. Se puede buscar posts por el titulo, contenido del post.
+El sistema permite registrarse e iniciar sesión, ya iniciado sesión puede crear posts, listar los posts publicados y ver detalle. Se puede buscar posts por el titulo, contenido del post.
 	
 	
 # Uso de API REST:
@@ -101,20 +101,20 @@ Direccion url, donde localhost es el servidor API Rest:
 ###Notas: 
 
 Para listar los posts se puede estar autentificado o no. 
-#####Autentificado
+#####Autenticado
 	
-Podrá ver el listado de posts publicos y privados del usuario autentificado y solamente publicos de otros usuarios. El administrador podra ver todos los posts.
+Podrá ver el listado de posts publicos y privados del usuario autenticado y solamente públicos de otros usuarios. El administrador podrá ver todos los posts.
 
-#####No autentificado
+#####No autenticado
 
-Solo podra listar los posts publicos de los usuarios.
+Solo podra listar los posts públicos de los usuarios.
 
 ###HEADERS
 
 	Content-type: application/json
 	Authorization: Basic bmF0YWx5OnN1cGVyc2VndXJh
 	
-Realizar la peticion GET y si la peticion fue correcta con codigo 200 OK verá algo como:
+Realizar la petición GET y si la petición fue correcta con código 200 OK verá algo como:
 
 	{
 	  "count": 3,
@@ -145,13 +145,13 @@ Realizar la peticion GET y si la peticion fue correcta con codigo 200 OK verá a
 
 #### * Detalle de un post: 
 
-Direccion URL:
+Dirección URL:
 
 	http://localhost:8000/api/1.0/blogs/67/
 	
-Donde el numero 67 es el identificador del post, Si el post es publico un usuario no autentificado podra verlo, si es administrador o propietario del post, podra ver el post publico y privado, el administrador puede ver el de cualquier usuario.
+Donde el número 67 es el identificador del post, Si el post es público un usuario no autenticado podrá verlo, si es administrador o propietario del post, podrá ver el post público y privado, el administrador puede ver el de cualquier usuario.
 
-Al hacer la peticion se obtendra la siguiente respuesta en el body con toda la informacion del modelo:
+Al hacer la petición se obtendrá la siguiente respuesta en el body con toda la información del modelo:
 
 	{
 	  "id": 67,
@@ -172,7 +172,7 @@ Al hacer la peticion se obtendra la siguiente respuesta en el body con toda la i
 
 ## POST
 
-Direccion URL:
+Dirección URL:
 
 	http://localhost:8000/api/1.0/blogs/
 	
@@ -192,7 +192,7 @@ En el body se le manda el json como raw:
 	  ]
 	}
 	
-Al realizar la creación del post, el propietario del post es el usuario autenticado, un usuario no autentificado no puede crear posts, necesita antes registrarse.
+Al realizar la creación del post, el propietario del post es el usuario autenticado, un usuario no autenticado no puede crear posts, necesita antes registrarse.
 
 
 Respuesta correcta: 
@@ -213,7 +213,7 @@ Respuesta correcta:
 	  ]
 	}
 	
-En caso de algun error, puede mostrar el mensaje como error de autenticacion o que no tiene los permisos para realizar dicha acción.
+En caso de algún error, puede mostrar el mensaje como error de autenticación o que no tiene los permisos para realizar dicha acción.
 	
 	{
 	  "detail": "Authentication credentials were not provided."
@@ -226,7 +226,7 @@ En caso de algun error, puede mostrar el mensaje como error de autenticacion o q
 
 ## PUT
 
-Direccion URL:
+Dirección URL:
 	
 	http://localhost:8000/api/1.0/blogs/67/
 
@@ -269,9 +269,9 @@ Respuesta 200 OK:
 	  ]
 	}
 
-## Delete
+## DELETE
 	
-Direccion URL:
+Dirección URL:
 	
 	http://localhost:8000/api/1.0/blogs/65/
 
