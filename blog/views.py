@@ -43,10 +43,7 @@ class HomeView(View):
         hoy = datetime.today()
         blogs = Blog.objects.all().select_related('owner').filter(datePub__lte=hoy).order_by('-datePub')
 
-        if not request.user.is_authenticated:
-            blogs = blogs.filter(visibility=VISIBILITY_PUBLIC)
-        else:
-            blogs = blogs.exclude(Q(visibility=VISIBILITY_PRIVATE) & ~Q(owner=request.user))
+        blogs = BlogQueryset.get_posts_by_user(blogs, request.user)
 
         if categoria is not None:
 
@@ -88,12 +85,13 @@ class BlogQueryset(object):
         return possible_photos
 
     @staticmethod
-    def get_posts_by_user(user):
-        possible_photos = Blog.objects.all().select_related("owner")
-        if not user.is_authenticated():
-            possible_photos = possible_photos.filter(datePub__lte=datetime.date.today())
-
-        return possible_photos
+    def get_posts_by_user(queryset, user):
+        if not user.is_authenticated:
+            return queryset.filter(visibility=VISIBILITY_PUBLIC)
+        elif user.is_superuser:
+            return queryset
+        else:
+            return queryset.exclude(Q(visibility=VISIBILITY_PRIVATE) & ~Q(owner=user))
 
 
 class DetailView(View):
@@ -105,7 +103,9 @@ class DetailView(View):
         :return:
         """
         user_object = get_object_or_404(User, username=user)  # consulta al usuario a actualizar.
-        blogs = BlogQueryset.get_posts_all().filter(pk=pk, owner=user_object)
+
+        blogs = BlogQueryset.get_posts_by_user(Blog.objects.all().filter(pk=pk, owner=user_object), request.user)
+
         if len(blogs) == 0:
             return HttpResponseNotFound("El blog que buscas no existe")
         elif len(blogs) > 1:
