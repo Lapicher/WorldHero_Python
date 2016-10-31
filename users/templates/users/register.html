@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+
 
 {% block posts %}
     {% block ocultaCreaPost %} ocultarBotonCrear {% endblock %}
@@ -15,13 +16,13 @@
     <div class="registro_user">
 
 
-        <h1>Registrar Usuario</h1>
+        <h1>{% trans "Registrar Usuario"%}</h1>
 
         <h2>{{ message }}</h2>
         <form action="" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Registrar Usuario</button>
+            <button type="submit">{% trans "Registrar Usuario"%}</button>
         </form>
     </div>
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-31 05:06+0000\n"
+"POT-Creation-Date: 2016-10-31 23:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,31 +20,31 @@ msgstr ""
 
 #: blog/forms.py:9
 msgid "Titulo"
-msgstr "Title"
+msgstr ""
 
 #: blog/forms.py:10
 msgid "Introducción"
-msgstr "Introduction"
+msgstr ""
 
 #: blog/forms.py:13
 msgid "Fecha de Publicación"
-msgstr "Publish Date"
+msgstr ""
 
 #: blog/validators.py:23
 msgid "formato Incorrecto:"
-msgstr "Incorrect Format"
+msgstr ""
 
 #: blog/views.py:116
 msgid "El blog que buscas no existe"
-msgstr "The blog doesn't exists."
+msgstr ""
 
 #: blog/views.py:158
 msgid "Post creado satisfactoriamente. Ver post: "
-msgstr "The post was successfully created. See post: "
+msgstr ""
 
 #: env/lib/python3.5/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
-msgstr "Mensajes"
+msgstr ""
 
 #: env/lib/python3.5/site-packages/django/contrib/sitemaps/apps.py:7
 msgid "Site Maps"
@@ -1155,6 +1155,15 @@ msgstr ""
 #: users/serializers.py:39
 #, python-brace-format
 msgid "El e-mail {0} ya está siendo utilizado"
+msgstr ""
+
+#: users/templates/users/login.html:13 users/templates/users/login.html:18
+msgid "Iniciar Sesión"
+msgstr ""
+
+#: users/templates/users/register.html:19
+#: users/templates/users/register.html:25
+msgid "Registrar Usuario"
 msgstr ""
 
 #: users/views.py:50

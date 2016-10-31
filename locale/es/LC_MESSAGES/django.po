@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-31 05:05+0000\n"
+"POT-Creation-Date: 2016-10-31 23:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,31 +20,31 @@ msgstr ""
 
 #: blog/forms.py:9
 msgid "Titulo"
-msgstr ""
+msgstr "Titulo"
 
 #: blog/forms.py:10
 msgid "Introducción"
-msgstr ""
+msgstr "Introducción"
 
 #: blog/forms.py:13
 msgid "Fecha de Publicación"
-msgstr ""
+msgstr "Fecha de Publicación"
 
 #: blog/validators.py:23
 msgid "formato Incorrecto:"
-msgstr ""
+msgstr "Formato Incorrecto:"
 
 #: blog/views.py:116
 msgid "El blog que buscas no existe"
-msgstr ""
+msgstr "El blog que buscas no existe"
 
 #: blog/views.py:158
 msgid "Post creado satisfactoriamente. Ver post: "
-msgstr ""
+msgstr "Post creado satisfactoriamente. Ver post: "
 
 #: env/lib/python3.5/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #: env/lib/python3.5/site-packages/django/contrib/sitemaps/apps.py:7
 msgid "Site Maps"
@@ -52,7 +52,7 @@ msgstr ""
 
 #: env/lib/python3.5/site-packages/django/contrib/staticfiles/apps.py:7
 msgid "Static Files"
-msgstr ""
+msgstr "Archivos Estaticos"
 
 #: env/lib/python3.5/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
@@ -1141,21 +1141,30 @@ msgstr ""
 
 #: users/forms.py:11 users/forms.py:31
 msgid "Contraseña"
-msgstr ""
+msgstr "Contraseña"
 
 #: users/forms.py:12 users/forms.py:30
 msgid "Nombre de Usuario"
-msgstr ""
+msgstr "Nombre de Usuario"
 
 #: users/serializers.py:34
 #, python-brace-format
 msgid "El nombre de usuario {0} ya está siendo utilizado"
-msgstr ""
+msgstr "El nombre de usuario {0} ya está siendo utilizado"
 
 #: users/serializers.py:39
 #, python-brace-format
 msgid "El e-mail {0} ya está siendo utilizado"
-msgstr ""
+msgstr "El e'mail {0} ya está siento utilizado"
+
+#: users/templates/users/login.html:13 users/templates/users/login.html:18
+msgid "Iniciar Sesión"
+msgstr "Iniciar Sesión"
+
+#: users/templates/users/register.html:19
+#: users/templates/users/register.html:25
+msgid "Registrar Usuario"
+msgstr "Registrar Usuario"
 
 #: users/views.py:50
 msgid "Usuario creado satisfactoriamente, Iniciar Sesion"
@@ -1163,20 +1172,20 @@ msgstr ""
 
 #: users/views.py:74
 msgid "Usuario Actualizado Correctamente"
-msgstr ""
+msgstr "Usuario creado satisfactoriamente, Iniciar Sesion"
 
 #: users/views.py:77
 msgid "Formulario Invalido"
-msgstr ""
+msgstr "Formulario Invalido"
 
 #: users/views.py:79
 msgid "La solicitud no es Ajax"
-msgstr ""
+msgstr "La solicitud no es Ajax"
 
 #: users/views.py:114
 msgid "Usuario o contraseña incorrecto"
-msgstr ""
+msgstr "Usuario o contraseña incorrecto"
 
 #: users/views.py:120
 msgid "Cuenta de usuario inactiva"
-msgstr ""
+msgstr "Cuenta de usuario inactiva"
