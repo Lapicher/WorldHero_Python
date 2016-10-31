@@ -2,13 +2,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
+from django.utils.translation import ugettext as _
 
 from users.models import Profile
 
 
 class UserForm(UserCreationForm):
-    password = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
-    username = forms.CharField(label="Nombre de Usuario")
+    password = forms.CharField(widget=forms.PasswordInput, label=_("Contraseña"))
+    username = forms.CharField(label=_("Nombre de Usuario"))
 
     class Meta:
         model = User
@@ -26,7 +27,7 @@ class ProfileForm(ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Nombre de Usuario")
-    pwd = forms.CharField(label="Contraseña", widget=forms.PasswordInput())
+    username = forms.CharField(label=_("Nombre de Usuario"))
+    pwd = forms.CharField(label=_("Contraseña"), widget=forms.PasswordInput())
 
 

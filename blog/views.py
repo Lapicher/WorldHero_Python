@@ -13,6 +13,7 @@ from django.views import View
 from blog.forms import BlogForm
 from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
 from categorias.models import Category
+from django.utils.translation import ugettext as _
 
 
 class HomeRedirect(View):
@@ -112,7 +113,7 @@ class DetailView(View):
         blogs = BlogQueryset.get_posts_by_user(Blog.objects.all().filter(pk=pk, owner=user_object), request.user)
 
         if len(blogs) == 0:
-            return HttpResponseNotFound("El blog que buscas no existe")
+            return HttpResponseNotFound(_("El blog que buscas no existe"))
         elif len(blogs) > 1:
             return HttpResponse("Multiples Opciones", status=300)
 
@@ -154,7 +155,8 @@ class CrearPostView(View):
 
             new_post = post_form.save()
             post_form = BlogForm()  # limpia los campos para que se pueda crear una nueva foto.
-            message = "Post creado satisfactoriamente. Ver post: <a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk )
+            mes = _("Post creado satisfactoriamente. Ver post: ")
+            message = "{2}<a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk, mes, )
         categorias = Category.objects.all()
         context = {'form': post_form, 'message': message, 'category_list': categorias}
         return render(request, 'blog/create_post.html', context)
