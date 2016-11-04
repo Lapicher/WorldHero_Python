@@ -1,5 +1,5 @@
 {% extends 'blog/list_posts.html' %}
-
+{% load i18n %}
 {% block perfil %}
     <div class="profile container">
         <div class="foto col-5">
@@ -14,11 +14,11 @@
             <form action="" class="form-profile" method="post" enctype="multipart/form-data">
                {% csrf_token %}
 
-                <label>Nombre: </label>
+                <label>{% trans "Nombre:" %}</label>
                 <span class="row">
                     {{ usuario.first_name }} {{ usuario.last_name }}
                 </span>
-                <label>Acerca de mi:</label>
+                <label>{% trans "Acerca de mi:" %}</label>
 
                 <textarea class="row" name="info" id="id_info" cols="50" rows="8">
                     {{ usuario.profile.info }}
