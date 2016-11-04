@@ -22,11 +22,28 @@ Si tienes instalada cualquier otra versión necesitas crear un entorno virtual.
 
 ## Creación de Entorno Virtual.
 
-Crear el entorno virutal.
+Crear el entorno virutal. 
+
+Comandos:
+>WINDOWS
+
+		c:\Temp>c:\Python35\python -m venv myenv
+>MAC OS
+	
+	$ python3 -m venv myenv
+		
 
 Ya creado el entorno virtual necesitaremos activarlo para que el proyecto trabaje desde ese entorno e instale las dependencias en el mismo entorno.
 
 Para activar situarse en el directorio donde se haya creado el entorno virtual y ejecutar la siguiente comando:
+
+>WINDOWS
+
+Ejecutar el archivo activate.bat de la carpeta del entorno virtual.
+	
+	> \path\to\env\Scripts\activate
+
+>MAC OS
 
 ```
  ✝  ~/Documents/Nataly/KeepCoding/Python_y_Django/WorldHero>  source env/bin/activate
