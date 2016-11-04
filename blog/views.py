@@ -12,6 +12,7 @@ from django.views import View
 
 from blog.forms import BlogForm
 from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
+from blog.util import generate_responsive_images
 from categorias.models import Category
 from django.utils.translation import ugettext as _
 
@@ -133,8 +134,8 @@ class CrearPostView(View):
         :param request:
         :return:
         """
-        message= ""
-        blog_form= BlogForm()
+        message = ""
+        blog_form = BlogForm()
         categorias = Category.objects.all()
         context = {'form': blog_form, 'message': message, 'category_list': categorias}
         return render(request, 'blog/create_post.html', context)
@@ -154,6 +155,7 @@ class CrearPostView(View):
         if post_form.is_valid():
 
             new_post = post_form.save()
+            generate_responsive_images(new_post)
             post_form = BlogForm()  # limpia los campos para que se pueda crear una nueva foto.
             mes = _("Post creado satisfactoriamente. Ver post: ")
             message = "{2}<a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk, mes, )

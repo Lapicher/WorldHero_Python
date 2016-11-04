@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'worldhero',
     'rest_framework',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -168,4 +169,16 @@ REST_FRAMEWORK = {
     # 'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
 
+# Images Sizes
 
+DEFAULT_IMAGE_SIZE = (2500, 2500)
+
+THUMBNAIL_NAMER = 'easy_thumbnails.namers.alias'
+THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_ALIASES = {
+    '': {
+        'small': {'size': (500, 500), },
+        'medium': {'size': (750, 750), },
+        'large': {'size': (1000, 1000), },
+    },
+}

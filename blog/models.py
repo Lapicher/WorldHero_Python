@@ -2,6 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from easy_thumbnails.fields import ThumbnailerImageField
+
+from blog.settings import DEFAULT_IMAGE_OPTIONS
 from categorias.models import Category
 
 
@@ -21,7 +24,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=100)
     intro = models.CharField(max_length=400)
     body = models.TextField()
-    image = models.ImageField(upload_to='uploads', null=True)
+    image = ThumbnailerImageField(upload_to='uploads', null=True, resize_source=DEFAULT_IMAGE_OPTIONS)
     datePub = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
