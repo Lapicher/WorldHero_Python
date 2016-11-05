@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'worldhero',
     'rest_framework',
     'easy_thumbnails',
+    'kombu.transport.django'
+      # para que funcione como broker-cola de tareas.
 ]
 
 MIDDLEWARE = [
@@ -182,3 +184,6 @@ THUMBNAIL_ALIASES = {
         'large': {'size': (1000, 1000), },
     },
 }
+
+BROKER_URL = 'django://' # le indica a Celery que se tiene que conectar a kombu.
+

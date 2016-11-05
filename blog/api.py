@@ -52,7 +52,7 @@ class BlogViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         post = serializer.save(owner=self.request.user)
-        generate_responsive_images(post)
+        generate_responsive_images.delay(post)
         return post
 
     # metodo para que al modificar solo se modifique la foto propietaria del usuario autentificado.
@@ -63,6 +63,6 @@ class BlogViewSet(ModelViewSet):
         if self.request.user.is_superuser:
             propietario = get_object_or_404(User, username=self.request.data.get('owner'))
         post = serializer.save(owner=propietario)
-        generate_responsive_images(post)
+        generate_responsive_images.delay(post)
         return post
 
