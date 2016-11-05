@@ -8,6 +8,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
 from blog.serializers import BlogSerializer, BlogListSerializer
+from blog.util import generate_responsive_images
 from users.permissions import UserPermissionBlog
 
 
@@ -50,7 +51,9 @@ class BlogViewSet(ModelViewSet):
     # metodo que nos sirve para crear la foto con el propietario que se logueo en la API.
 
     def perform_create(self, serializer):
-        return serializer.save(owner=self.request.user)
+        post = serializer.save(owner=self.request.user)
+        generate_responsive_images(post)
+        return post
 
     # metodo para que al modificar solo se modifique la foto propietaria del usuario autentificado.
     def perform_update(self, serializer):
@@ -59,5 +62,7 @@ class BlogViewSet(ModelViewSet):
         propietario = self.request.user
         if self.request.user.is_superuser:
             propietario = get_object_or_404(User, username=self.request.data.get('owner'))
-        return serializer.save(owner=propietario)
+        post = serializer.save(owner=propietario)
+        generate_responsive_images(post)
+        return post
 
