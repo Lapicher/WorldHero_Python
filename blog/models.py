@@ -24,11 +24,12 @@ class Blog(models.Model):
     title = models.CharField(max_length=100)
     intro = models.CharField(max_length=400)
     body = models.TextField()
-    image = ThumbnailerImageField(upload_to='uploads', null=True, resize_source=DEFAULT_IMAGE_OPTIONS)
+    image = models.ImageField(upload_to='uploads', null=True)
     datePub = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     visibility = models.CharField(max_length=3, choices=VISIBILITY, default=VISIBILITY_PUBLIC)
+    image_resized = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
