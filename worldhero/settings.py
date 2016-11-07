@@ -179,8 +179,8 @@ THUMBNAIL_NAMER = 'easy_thumbnails.namers.alias'
 THUMBNAIL_HIGH_RESOLUTION = True
 THUMBNAIL_ALIASES = {
     '': {
-        'small': {'size': (500, 500), },
-        'medium': {'size': (750, 750), },
+        'small': {'size': (500, 100), 'crop': (500, 100) },
+        'medium': {'size': (750, 300), 'crop': (750, 300)},
         'large': {'size': (1000, 1000), },
     },
 }
