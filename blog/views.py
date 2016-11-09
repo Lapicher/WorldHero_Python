@@ -12,7 +12,7 @@ from django.views import View
 
 from blog.forms import BlogForm
 from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
-from blog.util import generate_responsive_images
+from blog.util import generate_responsive_images, find_hashtags, send_mail
 from categorias.models import Category
 from django.utils.translation import ugettext as _
 
@@ -156,6 +156,22 @@ class CrearPostView(View):
 
             new_post = post_form.save()
             generate_responsive_images.delay(new_post)
+
+            # busca en el titulo, cabecera, cuerpo del post un usuario mencionado por hashtag para notificarle de la
+            # mencion.
+            emails = find_hashtags(new_post.title)
+
+            # reenvio notificacion a todos los usuarios mencionados en el post.
+            for email in emails:
+                mailOptions = {
+                    'from': '"WoldHero" <notifications@worldhero.com>',
+                    'to': email,  # list of receivers
+                    'subject': 'Hello, You have been mentioned in a post creation ✔',  # Subject line
+                    'text': 'Hello world ?',  # plaintext body
+                    'html': '<b>Hola Usuario, te avisamos que has sido mencionado en un post. ver</b>'  # html body
+                }
+                send_mail.delay(mailOptions)
+
             post_form = BlogForm()  # limpia los campos para que se pueda crear una nueva foto.
             mes = _("Post creado satisfactoriamente. Ver post: ")
             message = "{2}<a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk, mes, )
