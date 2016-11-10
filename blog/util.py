@@ -1,6 +1,7 @@
 import requests
 from celery import shared_task
 from easy_thumbnails.files import generate_all_aliases
+import re
 
 
 @shared_task
@@ -11,7 +12,10 @@ def generate_responsive_images(post):
 
 
 def find_hashtags(text):
-    return ['nataly.contreras@cidesi.edu.mx']
+
+    pattern = re.compile(r'(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9]+)')
+    users = pattern.findall(text)
+    return users
 
 
 @shared_task

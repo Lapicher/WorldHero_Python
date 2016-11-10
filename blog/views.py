@@ -159,10 +159,23 @@ class CrearPostView(View):
 
             # busca en el titulo, cabecera, cuerpo del post un usuario mencionado por hashtag para notificarle de la
             # mencion.
-            emails = find_hashtags(new_post.title)
+            users = find_hashtags('{0} {1} {2}'.format(new_post.title, new_post.intro, new_post.body))
+            list_emails = []
+            for username in users:
+                usuario = User.objects.filter(username=username)
+                if len(usuario) > 0 and usuario[0].email is not None:
+                    list_emails.append(usuario[0].email)
+
+            #elimina elementos repetidos de la lista
+            lst2 = []
+            for key in list_emails:
+                if key not in lst2:
+                    lst2.append(key)
+            list_emails = lst2
+
 
             # reenvio notificacion a todos los usuarios mencionados en el post.
-            for email in emails:
+            for email in list_emails:
                 mailOptions = {
                     'from': '"WoldHero" <notifications@worldhero.com>',
                     'to': email,  # list of receivers
