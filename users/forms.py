@@ -8,12 +8,10 @@ from users.models import Profile
 
 
 class UserForm(UserCreationForm):
-    password = forms.CharField(widget=forms.PasswordInput, label=_("Contraseña"))
-    username = forms.CharField(label=_("Nombre de Usuario"))
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password', 'email']
+        fields = ['first_name', 'last_name', 'username', 'email']
 
 
 class ProfileForm(ModelForm):
