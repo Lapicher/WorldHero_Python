@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'worldhero',
     'rest_framework',
     'easy_thumbnails',
-    'kombu.transport.django'
-      # para que funcione como broker-cola de tareas.
+    'kombu.transport.django',  # para que funcione como broker-cola de tareas.
+    'comentario',
 ]
 
 MIDDLEWARE = [
