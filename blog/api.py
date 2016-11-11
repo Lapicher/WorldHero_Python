@@ -8,7 +8,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
 from blog.serializers import BlogSerializer, BlogListSerializer
-from blog.util import generate_responsive_images
+from blog.util import generate_responsive_images, find_hashtags, send_mail
 from users.permissions import UserPermissionBlog
 
 
@@ -53,6 +53,34 @@ class BlogViewSet(ModelViewSet):
     def perform_create(self, serializer):
         post = serializer.save(owner=self.request.user)
         generate_responsive_images.delay(post)
+
+        # busca en el titulo, cabecera, cuerpo del post un usuario mencionado por hashtag para notificarle de la
+        # mencion.
+        users = find_hashtags('{0} {1} {2}'.format(post.title, post.intro, post.body))
+        list_emails = []
+        for username in users:
+            usuario = User.objects.filter(username=username)
+            if len(usuario) > 0 and usuario[0].email is not None:
+                list_emails.append(usuario[0].email)
+
+        # elimina elementos repetidos de la lista
+        lst2 = []
+        for key in list_emails:
+            if key not in lst2:
+                lst2.append(key)
+        list_emails = lst2
+
+        # reenvio notificacion a todos los usuarios mencionados en el post.
+        for email in list_emails:
+            mailOptions = {
+                'from': '"WoldHero" <notifications@worldhero.com>',
+                'to': email,  # list of receivers
+                'subject': 'Hello, You have been mentioned in a post creation ✔',  # Subject line
+                'text': 'Hello world ?',  # plaintext body
+                'html': '<b>Hola Usuario, te avisamos que has sido mencionado en un post. ver</b>'  # html body
+            }
+            send_mail.delay(mailOptions)
+
         return post
 
     # metodo para que al modificar solo se modifique la foto propietaria del usuario autentificado.
