@@ -168,6 +168,16 @@
       .item-comment{
           margin-top: 2px;
           background-color: darken($color-article, 5%);
+          .user-comment{
+              margin-left: 10px;
+              #fecha_comment{
+                  font-size: 9pt;
+                  color: #748e86;
+              }
+          }
+          .coment{
+              margin-left: 10px;
+          }
       }
     }
     .escribir{

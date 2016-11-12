@@ -1,19 +1,18 @@
 from rest_framework import serializers
 
+from blog.models import Blog
 from comentario.models import Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
-
-    owner = serializers.CharField(
-        default=serializers.CurrentUserDefault()
-    )
 
     class Meta:
         model = Comment
 
 
 class CommentListSerializer(CommentSerializer):
+
+    owner = serializers.CharField()
 
     class Meta:
         model = Comment

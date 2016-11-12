@@ -1,22 +1,16 @@
 from django.contrib.auth.models import User
-from django.db.models import Q
-from django.shortcuts import get_object_or_404
-from django.utils.datetime_safe import datetime
-from rest_framework import filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet
 
-from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
-from blog.serializers import BlogSerializer, BlogListSerializer
-from blog.util import generate_responsive_images, find_hashtags, send_mail
+from blog.models import Blog
+from blog.util import find_hashtags, send_mail
 from comentario.models import Comment
-from users.permissions import UserPermissionBlog
-from comentario.serializer import CommentListSerializer
+from comentario.serializer import CommentListSerializer, CommentSerializer
 
 
 class CommentViewSet(ModelViewSet):
 
-    # permission_classes = (IsAuthenticatedOrReadOnly )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     # search_fields = ('owner', 'text', )
     # order_fields = ('-created_at', )
     # filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
@@ -39,14 +33,16 @@ class CommentViewSet(ModelViewSet):
             # invitado prodra ver los posts publicos.
             return blogs.filter(datePub__lte=datetime.today(), visibility=VISIBILITY_PUBLIC)
         """
+        datos = self.request.data;
         comments = Comment.objects.all()
+        total = len(comments)
         return comments
 
     # se comenta la linea anterior para permitir al metodo siguiente seleccionar que serializador escoger.
     def get_serializer_class(self):
 
         if self.action != 'list':
-            serializador = CommentViewSet
+            serializador = CommentSerializer
         else:
             serializador = CommentListSerializer
 
@@ -57,12 +53,44 @@ class CommentViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
 
-        post = None
-        return  post
+        datos = self.request.data;
+        id_blog = datos.get('idArticle')
+        texto = datos.get('message')
+        userBlog= datos.get('userArticle')
 
-    # metodo para que al modificar solo se modifique la foto propietaria del usuario autentificado.
-    def perform_update(self, serializer):
+        blog = Blog.objects.filter(pk=id_blog)
+        user = User.objects.filter(username=userBlog)
 
-        post = None
-        return post
+        commentario = serializer.save(owner=user[0], blog=blog[0], text=texto)
+
+        # busca en el titulo, cabecera, cuerpo del post un usuario mencionado por hashtag para notificarle de la
+        # mencion.
+        users = find_hashtags('{0}'.format(texto))
+        list_emails = []
+        for username in users:
+            usuario = User.objects.filter(username=username)
+            if len(usuario) > 0 and usuario[0].email is not None:
+                list_emails.append(usuario[0].email)
+
+        # elimina elementos repetidos de la lista
+        lst2 = []
+        for key in list_emails:
+            if key not in lst2:
+                lst2.append(key)
+        list_emails = lst2
+
+        # reenvio notificacion a todos los usuarios mencionados en el post.
+        for email in list_emails:
+            mailOptions = {
+                'from': '"WoldHero" <notifications@worldhero.com>',
+                'to': email,  # list of receivers
+                'subject': 'Hello, You have been mentioned in a comment✔',  # Subject line
+                'text': 'Hello world ?',  # plaintext body
+                'html': '<b>Estimado Usuario, te avisamos que has sido mencionado en un comentario. ver</b>'  # html body
+            }
+            send_mail.delay(mailOptions)
+
+
+        return commentario
+
 

@@ -60,17 +60,17 @@
 
 
                   </div>
-                  <div class="escribir row">
-                    <form action="#" method="get">
-                        <label for="nombre" class="nombre" required>Nombre:</label>
-                        <input type="text" id="nombre" class="inombre" placeholder="Nombre" required>
-                        <label for="email" class="email">Email:</label>
-                        <input type="text" id="email" class="iemail" placeholder="name@company.com" pattern="[A-Za-z0-9\.\+]+@[A-Za-z0-9]+\.[A-Za-z0-9\.]+" required>
-                        <label>Comentario: <small>máximo 150 palabras</small></label><small class="indicador">0</small>
-                        <textarea name="comment" id="message" cols="30" rows="10"></textarea>
-                        <button class="enviar">Enviar</button>
-                    </form>
-                  </div>
+                  {%  if user.is_authenticated %}
+                      <input type="hidden" id="nombre" value="{{ user.username }}">
+                      <div class="escribir row">
+                        <form action="#" method="get">
+
+                            <label>Comentario: <small>máximo 150 palabras</small></label><small class="indicador">0</small>
+                            <textarea name="comment" id="message" cols="30" rows="10"></textarea>
+                            <button class="enviar">Enviar</button>
+                        </form>
+                      </div>
+                  {% endif %}
               </div>
         </div>
 {% endblock %}
