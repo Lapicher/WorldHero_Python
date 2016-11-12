@@ -175,13 +175,14 @@ class CrearPostView(View):
 
 
             # reenvio notificacion a todos los usuarios mencionados en el post.
+            html = 'Hola Usuario, te avisamos que has sido mencionado en un post: <a href="http://localhost:8000/blogs/{1}/{2}"><b>{0}</b></a>'.format(new_post.title, new_post.owner.username, new_post.pk)
             for email in list_emails:
                 mailOptions = {
                     'from': '"WoldHero" <notifications@worldhero.com>',
                     'to': email,  # list of receivers
                     'subject': 'Hello, You have been mentioned in a post creation ✔',  # Subject line
                     'text': 'Hello world ?',  # plaintext body
-                    'html': '<b>Hola Usuario, te avisamos que has sido mencionado en un post. ver</b>'  # html body
+                    'html': html
                 }
                 send_mail.delay(mailOptions)
 
