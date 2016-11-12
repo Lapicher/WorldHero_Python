@@ -12,7 +12,7 @@ class CommentViewSet(ModelViewSet):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
     # search_fields = ('owner', 'text', )
-    # order_fields = ('-created_at', )
+    order_fields = ('-created_at', )
     # filter_backends = (filters.SearchFilter, filters.OrderingFilter, )
 
 
@@ -35,7 +35,7 @@ class CommentViewSet(ModelViewSet):
         """
         idpost = self.request.query_params.get('idpost')
         blog = Blog.objects.filter(pk=idpost)
-        comments = Comment.objects.filter(blog=blog)
+        comments = Comment.objects.filter(blog=blog).order_by('-created_at')
         return comments
 
     # se comenta la linea anterior para permitir al metodo siguiente seleccionar que serializador escoger.

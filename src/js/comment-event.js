@@ -39,15 +39,17 @@ $('.escribir > form').on("submit",function(){
             ///console.log("se inserto correctamente");
 
             alert("comentario agregado correctamente");
+            var fecha=moment(new Date(),"DD-MM-YYYY h:mm:ss a").format('LLL');
             var item = '<div class="item-comment row">'+
                  '<div class="row user-comment">'+
+                     '<label id="fecha_comment">'+fecha+'</label>'+
                      '<label>'+datos.userArticle+'</label>'+
                   '</div>'+
                   '<div class="coment">'+
                       '<p>'+datos.message+'</p>'+
                   '</div>'+
                 '</div>';
-            $('.sectionComments').append(item);
+            $('.sectionComments').prepend(item);
             self.reset();
         },
         error: function(e){
