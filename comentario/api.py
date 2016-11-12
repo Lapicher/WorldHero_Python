@@ -33,9 +33,9 @@ class CommentViewSet(ModelViewSet):
             # invitado prodra ver los posts publicos.
             return blogs.filter(datePub__lte=datetime.today(), visibility=VISIBILITY_PUBLIC)
         """
-        datos = self.request.data;
-        comments = Comment.objects.all()
-        total = len(comments)
+        idpost = self.request.query_params.get('idpost')
+        blog = Blog.objects.filter(pk=idpost)
+        comments = Comment.objects.filter(blog=blog)
         return comments
 
     # se comenta la linea anterior para permitir al metodo siguiente seleccionar que serializador escoger.

@@ -107,9 +107,12 @@ $(window).on("scroll",function(){
                 console.error(err);
             });
             */
+            var idpost= $(".plantilla-detalle").data("id");
+            console.log(idpost);
             $.ajax({
                 url: "/api/comments/?_order=fecha",
                 method: "get",
+                data: {'idpost':idpost},
                 success: function(respuesta){
                     //console.log(respuesta);
                     for(var item in respuesta.results){
