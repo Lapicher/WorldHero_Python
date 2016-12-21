@@ -3,7 +3,7 @@
 Intrucciones para el correcto funcionamiento del sistema.
 
 ## Instalación de Python:
-Lo primero que necesitamos para instalar es Python. Versión utilizada: 3.5.2 ([descarga e instrucciones](https://www.continuum.io/downloads)).
+Lo primero que necesitamos para instalar es Python. Versión utilizada: 3.5.2 ([descarga e instrucciones](https://www.python.org/downloads/).
 
 Para comprobar que tienes la versión de Python correcta, una vez instalado abre una ventana de comandos, escribe `python` y presionar enter.
 
