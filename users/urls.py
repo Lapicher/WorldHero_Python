@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import url, include
 from users.views import UserRegisterView, ActualizarUser, LoginView, LogoutView
 from rest_framework.routers import DefaultRouter

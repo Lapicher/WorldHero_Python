@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import requests
 from celery import shared_task
 from easy_thumbnails.files import generate_all_aliases
