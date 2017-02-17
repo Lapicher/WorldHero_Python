@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
@@ -15,6 +16,7 @@ from pip._vendor.requests import Response
 
 from users.forms import UserForm, ProfileForm, LoginForm
 from users.models import Profile
+from django.utils.translation import ugettext as _
 
 
 class UserRegisterView(View):
@@ -46,7 +48,7 @@ class UserRegisterView(View):
         if user_form.is_valid():
             new_user = user_form.save()
             user_form = UserForm()  # limpia los campos para que se pueda crear una nueva foto.
-            message = "Usuario creada satisfactoriamente, Iniciar Sesion"
+            message = _("Usuario creado satisfactoriamente, Iniciar Sesion")
 
         context = {'form': user_form, 'message': message}
         return render(request, 'users/register.html', context)
@@ -70,12 +72,12 @@ class ActualizarUser(View):
             if form.is_valid():
                 form.save()
                 return HttpResponse(
-                    "Usuario Actualizado Correctamente", content_type="text/plain"
+                    _("Usuario Actualizado Correctamente"), content_type="text/plain"
                 )
             else:
-                message = "Formulario Invalido"
+                message = _("Formulario Invalido")
         else:
-            message = "La solicitud no es Ajax"
+            message = _("La solicitud no es Ajax")
 
         return HttpResponseBadRequest(message)
 
@@ -110,13 +112,13 @@ class LoginView(View):
 
             user = authenticate(username=username, password=password)
             if user is None:
-                error_messages = "Usuario o contraseña incorrecto"
+                error_messages = _("Usuario o contraseña incorrecto")
             else:
                 if user.is_active:
                     django_login(request, user)
                     return redirect(request.GET.get('next', 'blog_home'))
                 else:
-                    error_messages = "Cuenta de usuario inactiva"
+                    error_messages = _("Cuenta de usuario inactiva")
 
         context = {'error': error_messages, 'form': login_form}
         return render(request, 'users/login.html', context)

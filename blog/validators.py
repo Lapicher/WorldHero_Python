@@ -1,4 +1,6 @@
+# -*- encoding: utf-8 -*-
 from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext as _
 
 BADWORDS = (
             "Caranabo",
@@ -19,5 +21,6 @@ def formatURLImage(imageUrl):
     """
 
     if "http" not in imageUrl:
-        raise ValidationError("format incorrect: {0} ".format(imageUrl))
+        texto = _("formato Incorrecto:")
+        raise ValidationError(("{1} {0} ").format(imageUrl, texto, ))
     return True

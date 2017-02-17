@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """worldhero URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -20,6 +21,7 @@ from django.views.static import serve
 from django.conf import settings
 from blog.urls import urlpatterns
 from users.urls import patrones_user
+from comentario.urls import urlpatternsComment
 
 print(settings.STATIC_ROOT)
 
@@ -30,7 +32,8 @@ urlpatterns = [
         'document_root': settings.MEDIA_ROOT
     }),
     url(r'', include(urlpatterns)),
-    url(r'', include(patrones_user))
+    url(r'', include(patrones_user)),
+    url(r'', include(urlpatternsComment))
 ]
 
 

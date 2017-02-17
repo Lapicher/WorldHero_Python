@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 from rest_framework.permissions import BasePermission
-
 from blog.models import VISIBILITY_PUBLIC
 
 

@@ -1,7 +1,11 @@
+# -*- encoding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from easy_thumbnails.fields import ThumbnailerImageField
+
+from blog.settings import DEFAULT_IMAGE_OPTIONS
 from categorias.models import Category
 
 
@@ -26,6 +30,7 @@ class Blog(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     visibility = models.CharField(max_length=3, choices=VISIBILITY, default=VISIBILITY_PUBLIC)
+    image_resized = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

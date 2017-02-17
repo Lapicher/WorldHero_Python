@@ -3,7 +3,7 @@
 Intrucciones para el correcto funcionamiento del sistema.
 
 ## Instalación de Python:
-Lo primero que necesitamos para instalar es Python. Versión utilizada: 3.5.2 ([descarga e instrucciones](https://www.continuum.io/downloads)).
+Lo primero que necesitamos para instalar es Python. Versión utilizada: 3.5.2 ([descarga e instrucciones](https://www.python.org/downloads/).
 
 Para comprobar que tienes la versión de Python correcta, una vez instalado abre una ventana de comandos, escribe `python` y presionar enter.
 
@@ -301,5 +301,28 @@ Respuesta correcta: Codigo 204 No Content
 #***Listo!!***
 ###A disfrutar de Worldhero.
 
+-- 
+## Activar la generacion de las imagenes thumbnails o responsive de los post subidos por el usuario. 
+
+tras haber instalado todas las dependencias del proyecto, se necesitara correr el servicio de celery:
+
+	$ celery -A worldhero worker -l info
+	
+Sino se corriera el servicio de celery, la aplicación no generara las imagenes responsive.
+
+# 
+## Microservicio de Notificaciones.
+
+Para comunicarse con el microservicio para el envio de notificaciones a los usuario, se tendra que ejecutar el proyecto en node: ([descarga e instrucciones](https://github.com/Lapicher/microservicioEmails)).
+
+Se instalan las dependencias del package.json:
+	
+	npm install
+	
+Se corre el microservicio:
+	
+	npm start
+
+el microservicio corre el en puerto 3000. 
 
 

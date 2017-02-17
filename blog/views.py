@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -12,7 +13,9 @@ from django.views import View
 
 from blog.forms import BlogForm
 from blog.models import Blog, VISIBILITY_PUBLIC, VISIBILITY_PRIVATE
+from blog.util import generate_responsive_images, find_hashtags, send_mail
 from categorias.models import Category
+from django.utils.translation import ugettext as _
 
 
 class HomeRedirect(View):
@@ -112,7 +115,7 @@ class DetailView(View):
         blogs = BlogQueryset.get_posts_by_user(Blog.objects.all().filter(pk=pk, owner=user_object), request.user)
 
         if len(blogs) == 0:
-            return HttpResponseNotFound("El blog que buscas no existe")
+            return HttpResponseNotFound(_("El blog que buscas no existe"))
         elif len(blogs) > 1:
             return HttpResponse("Multiples Opciones", status=300)
 
@@ -132,8 +135,8 @@ class CrearPostView(View):
         :param request:
         :return:
         """
-        message= ""
-        blog_form= BlogForm()
+        message = ""
+        blog_form = BlogForm()
         categorias = Category.objects.all()
         context = {'form': blog_form, 'message': message, 'category_list': categorias}
         return render(request, 'blog/create_post.html', context)
@@ -153,8 +156,40 @@ class CrearPostView(View):
         if post_form.is_valid():
 
             new_post = post_form.save()
+            generate_responsive_images.delay(new_post)
+
+            # busca en el titulo, cabecera, cuerpo del post un usuario mencionado por hashtag para notificarle de la
+            # mencion.
+            users = find_hashtags('{0} {1} {2}'.format(new_post.title, new_post.intro, new_post.body))
+            list_emails = []
+            for username in users:
+                usuario = User.objects.filter(username=username)
+                if len(usuario) > 0 and usuario[0].email is not None:
+                    list_emails.append(usuario[0].email)
+
+            #elimina elementos repetidos de la lista
+            lst2 = []
+            for key in list_emails:
+                if key not in lst2:
+                    lst2.append(key)
+            list_emails = lst2
+
+
+            # reenvio notificacion a todos los usuarios mencionados en el post.
+            html = 'Hola Usuario, te avisamos que has sido mencionado en un post: <a href="http://localhost:8000/blogs/{1}/{2}"><b>{0}</b></a>'.format(new_post.title, new_post.owner.username, new_post.pk)
+            for email in list_emails:
+                mailOptions = {
+                    'from': '"WoldHero" <notifications@worldhero.com>',
+                    'to': email,  # list of receivers
+                    'subject': 'Hello, You have been mentioned in a post creation ✔',  # Subject line
+                    'text': 'Hello world ?',  # plaintext body
+                    'html': html
+                }
+                send_mail.delay(mailOptions)
+
             post_form = BlogForm()  # limpia los campos para que se pueda crear una nueva foto.
-            message = "Post creado satisfactoriamente. Ver post: <a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk )
+            mes = _("Post creado satisfactoriamente. Ver post: ")
+            message = "{2}<a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk, mes, )
         categorias = Category.objects.all()
         context = {'form': post_form, 'message': message, 'category_list': categorias}
         return render(request, 'blog/create_post.html', context)

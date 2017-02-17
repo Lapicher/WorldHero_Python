@@ -1,4 +1,5 @@
 var $=require('jquery');
+var moment=require('moment');
 //var apiClient=require('api-client');
 
 $('.escribir > form').on("submit",function(){
@@ -7,14 +8,14 @@ $('.escribir > form').on("submit",function(){
     //terminada la validacion de los campos se prosigue a enviar el comentario.
     var id=$(".plantilla-detalle").data("id");
     var user=$("#nombre").val();
-    var email=$("#email").val();
+    //var email=$("#email").val();
     var mensaje= $("#message").val();
 
     var datos={
         idArticle: id,
         userArticle: user,
-        emailUser: email,
-        fecha: new Date(),
+        //emailUser: email,
+        //fecha: new Date(),
         message: mensaje
     };
     // se guarda el comentario en el spaREST.
@@ -36,19 +37,22 @@ $('.escribir > form').on("submit",function(){
         data: datos,
         success: function(){
             ///console.log("se inserto correctamente");
+
             alert("comentario agregado correctamente");
+            var fecha=moment(new Date(),"DD-MM-YYYY h:mm:ss a").format('LLL');
             var item = '<div class="item-comment row">'+
                  '<div class="row user-comment">'+
+                     '<label id="fecha_comment">'+fecha+'</label>'+
                      '<label>'+datos.userArticle+'</label>'+
                   '</div>'+
                   '<div class="coment">'+
                       '<p>'+datos.message+'</p>'+
                   '</div>'+
                 '</div>';
-            $('.sectionComments').append(item);
+            $('.sectionComments').prepend(item);
             self.reset();
         },
-        error: function(){
+        error: function(e){
             console.error(e);
             alert("ocurrio un error, volver a intentar");
             self.reset();
@@ -105,25 +109,27 @@ $(window).on("scroll",function(){
                 console.error(err);
             });
             */
+            var idpost= $(".plantilla-detalle").data("id");
+            console.log(idpost);
             $.ajax({
                 url: "/api/comments/?_order=fecha",
                 method: "get",
-                success: function(comments){
-                    //console.log(comments);
-                    for(var item in comments){
-                        console.log(comments[item]);
-                        //console.log("data: "+$('.plantilla-detalle').data("id"));
-                        if($('.plantilla-detalle').data("id")==comments[item].idArticle){
-                            var item = '<div class="item-comment row">'+
-                                 '<div class="row user-comment">'+
-                                     '<label>'+comments[item].userArticle+'</label>'+
-                                  '</div>'+
-                                  '<div class="coment">'+
-                                      '<p>'+comments[item].message+'</p>'+
-                                  '</div>'+
-                                '</div>';
-                            $('.sectionComments').append(item);
-                        }
+                data: {'idpost':idpost},
+                success: function(respuesta){
+                    //console.log(respuesta);
+                    for(var item in respuesta.results){
+                        //console.log(respuesta.results[item]);
+                        var fecha=moment(respuesta.results[item].created_at,"DD-MM-YYYY h:mm:ss a").format('LLL');
+                        var item = '<div class="item-comment row">'+
+                             '<div class="row user-comment">'+
+                                 '<label id="fecha_comment">'+fecha+'</label>'+
+                                 '<label>'+respuesta.results[item].owner+'</label>'+
+                              '</div>'+
+                              '<div class="coment">'+
+                                  '<p>'+respuesta.results[item].text+'</p>'+
+                              '</div>'+
+                            '</div>';
+                        $('.sectionComments').append(item);
                     }
                 },
                 error: function(err){

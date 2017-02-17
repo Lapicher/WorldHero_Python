@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -21,17 +22,17 @@
             <div class="access">
 
               {%  if user.is_authenticated %}
-                  <a href="/logout" class="register">Salir</a>
-                  <a href="/blogs/{{ user.username }}" class="login">Mi Perfil</a>
+                  <a href="/logout" class="register">{% trans "Salir" %}</a>
+                  <a href="/blogs/{{ user.username }}" class="login">{% trans "Mi Perfil" %}</a>
               {% else %}
-                  <a href="/signup" class="register">Registro</a>
-                  <a href="/login" class="login">Ingresar</a>
+                  <a href="/signup" class="register">{% trans "Registro" %}</a>
+                  <a href="/login" class="login">{% trans "Ingresar" %}</a>
               {% endif %}
 
 
             </div>
             <div class="row {% block ocultarBuscar %}{% endblock %}">
-                <input class="txt-buscar" type="search" placeholder="Buscar..">
+                <input class="txt-buscar" type="search" placeholder="{% trans "Buscar" %}">
             </div>
         </div>
     </div>
@@ -117,9 +118,9 @@
         <div class="list-article paginacion {% block ocultarPaginacion %}{% endblock %}">
             <div class="container">
               <div class="divVert">
-                  <a href="#ant" class="ant">Anterior</a>
+                  <a href="#ant" class="ant">{% trans "Anterior" %}</a>
               </div>
-              <a href="#sig" class="sig">Siguiente</a>
+              <a href="#sig" class="sig">{% trans "Siguiente" %}</a>
             </div>
         </div>
 

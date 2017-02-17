@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for worldhero project.
 
@@ -42,11 +43,15 @@ INSTALLED_APPS = [
     'users',
     'worldhero',
     'rest_framework',
+    'easy_thumbnails',
+    'kombu.transport.django',  # para que funcione como broker-cola de tareas.
+    'comentario',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -55,6 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'worldhero.urls'
+
 
 TEMPLATES = [
     {
@@ -71,6 +77,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'worldhero.wsgi.application'
 
@@ -118,6 +125,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -154,9 +165,26 @@ LOGIN_URL = '/login'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5,
+    'PAGE_SIZE': 100,
     'DEFAULT_AUTHENTICATION_CLASSES': (
             'rest_framework.authentication.BasicAuthentication',
      ),
     # 'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
+
+# Images Sizes
+
+DEFAULT_IMAGE_SIZE = (2500, 2500)
+
+THUMBNAIL_NAMER = 'easy_thumbnails.namers.alias'
+THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_ALIASES = {
+    '': {
+        'small': {'size': (500, 100), 'crop': (500, 100) },
+        'medium': {'size': (750, 300), 'crop': (750, 300)},
+        'large': {'size': (1000, 1000), },
+    },
+}
+
+BROKER_URL = 'django://' # le indica a Celery que se tiene que conectar a kombu.
+

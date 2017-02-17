@@ -1,16 +1,17 @@
+# -*- encoding: utf-8 -*-
 from django.forms import ModelForm
 from django import forms
+from django.utils.translation import ugettext as _
 
 from blog.models import Blog
 
 
 class BlogForm(ModelForm):
-    title = forms.CharField(label="Titulo")
-    intro = forms.CharField(label="Introducción")
+    title = forms.CharField(label=_("Titulo"))
+    intro = forms.CharField(label=_("Introduccion"))
     # body = forms.Textarea()
     # image = forms.ImageField(label="Imagen de Cabecera")
-    datePub = forms.DateField(label="Fecha de Publicacion")
-
+    datePub = forms.DateField(label=_("Fecha de Publicacion"))
 
     class Meta:
         model = Blog

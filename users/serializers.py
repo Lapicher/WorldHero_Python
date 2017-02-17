@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import serializers
@@ -31,12 +32,12 @@ class UserSerializer(serializers.Serializer):
         # validacion para que pueda modificar el administrador y el usuario, pero validando que no exista el usuario.
         if (self.instance is None or self.instance.username != username) \
                 and User.objects.filter(username=username).exists():
-            raise ValidationError("El nombre de usuario {0} ya está siendo utilizado".format(username))
+            raise ValidationError(_("El nombre de usuario {0} ya está siendo utilizado").format(username))
         return username
 
     def validate_email(self, email):
         if (self.instance is None or self.instance.email != email) and User.objects.filter(email=email).exists():
-            raise ValidationError("El e-mail {0} ya está siendo utilizado".format(email))
+            raise ValidationError(_("El e-mail {0} ya está siendo utilizado").format(email))
         return email.lower()
 
     def validate(self, attrs):
