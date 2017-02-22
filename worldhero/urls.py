@@ -26,7 +26,7 @@ from comentario.urls import urlpatternsComment
 print(settings.STATIC_ROOT)
 
 urlpatterns = [
-    url(r'^python/admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
 
     url(r'^media/(?P<path>.*)$', serve, {
         'document_root': settings.MEDIA_ROOT

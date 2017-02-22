@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from comentario.api import CommentViewSet
 
 router = DefaultRouter()
-router.register('python/api/comments', CommentViewSet, 'api_comments_')
+router.register('api/comments', CommentViewSet, 'api_comments_')
 
 
 urlpatternsComment = [
