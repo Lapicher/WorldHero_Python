@@ -9,11 +9,11 @@ router.register('api/1.0/users', UserViewSet, base_name='api_users_')
 
 patrones_user = [
 
-    url(r'^signup$', UserRegisterView.as_view(), name="register_user"),
-    url(r'^blogs/(?P<user>[a-zA-Z0-9]+)/updateUser$', ActualizarUser.as_view(), name="update_user"),
+    url(r'^python/signup$', UserRegisterView.as_view(), name="register_user"),
+    url(r'^python/blogs/(?P<user>[a-zA-Z0-9]+)/updateUser$', ActualizarUser.as_view(), name="update_user"),
 
-    url(r'^login$', LoginView.as_view(), name="login"),
-    url(r'^logout$', LogoutView.as_view(), name="logout"),
+    url(r'^python/login$', LoginView.as_view(), name="login"),
+    url(r'^python/logout$', LogoutView.as_view(), name="logout"),
 
 
     # URLS API
