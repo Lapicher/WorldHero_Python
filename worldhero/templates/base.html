@@ -22,11 +22,11 @@
             <div class="access">
 
               {%  if user.is_authenticated %}
-                  <a href="python/logout" class="register">{% trans "Salir" %}</a>
-                  <a href="python/blogs/{{ user.username }}" class="login">{% trans "Mi Perfil" %}</a>
+                  <a href="http://nataly.cloudapp.net/python/logout" class="register">{% trans "Salir" %}</a>
+                  <a href="http://nataly.cloudapp.net/python/blogs/{{ user.username }}" class="login">{% trans "Mi Perfil" %}</a>
               {% else %}
-                  <a href="python/signup" class="register">{% trans "Registro" %}</a>
-                  <a href="python/login" class="login">{% trans "Ingresar" %}</a>
+                  <a href="http://nataly.cloudapp.net/python/signup" class="register">{% trans "Registro" %}</a>
+                  <a href="http://nataly.cloudapp.net/python/login" class="login">{% trans "Ingresar" %}</a>
               {% endif %}
 
 
@@ -58,7 +58,7 @@
     {% block detalle %}
     <!-- Plantilla Detalle --->
         <div class="new_post {% block ocultaCreaPost %}ocultar{% endblock %}">
-            <a href="python/../blogs/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
+            <a href="http://nataly.cloudapp.net/python/blogs/new_post" alt="Nuevo Post" title="Nuevo Post"></a>
         </div>
 
     {% endblock %}
