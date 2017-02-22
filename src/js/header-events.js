@@ -8,12 +8,12 @@ $('.icon-lupa').on("click", eventoLupa);
 $('.txt-buscar').on("keypress", function(evt){
     var dato_busqueda = $(this).val();
     if(evt.key == 'Enter')
-        window.location = "/blogs/?search="+dato_busqueda;
+        window.location = "./?search="+dato_busqueda;
 });
 
 $('.titulo').on("click", function(){
 
-    window.location = "/";
+    window.location = "./";
 });
 
 
