@@ -112,7 +112,7 @@ class LoginView(View):
 
             user = authenticate(username=username, password=password)
             if user is None:
-                error_messages = _("Usuario o contraseña incorrecto")
+                error_messages = _("Usuario o contrasena incorrecto")
             else:
                 if user.is_active:
                     django_login(request, user)

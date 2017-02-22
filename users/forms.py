@@ -27,6 +27,6 @@ class ProfileForm(ModelForm):
 
 class LoginForm(forms.Form):
     username = forms.CharField(label=_("Nombre de Usuario"))
-    pwd = forms.CharField(label=_("Contraseña"), widget=forms.PasswordInput())
+    pwd = forms.CharField(label=_("Contrasena"), widget=forms.PasswordInput())
 
 

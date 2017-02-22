@@ -8,10 +8,10 @@ from blog.models import Blog
 
 class BlogForm(ModelForm):
     title = forms.CharField(label=_("Titulo"))
-    intro = forms.CharField(label=_("Introducción"))
+    intro = forms.CharField(label=_("Introduccion"))
     # body = forms.Textarea()
     # image = forms.ImageField(label="Imagen de Cabecera")
-    datePub = forms.DateField(label=_("Fecha de Publicación"))
+    datePub = forms.DateField(label=_("Fecha de Publicacion"))
 
     class Meta:
         model = Blog

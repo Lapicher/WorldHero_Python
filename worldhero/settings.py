@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#spv!_-sbi#0q3xt&#bdv5l(x2x)hd26*k14+w++es7*qeg-1u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -143,23 +143,8 @@ STATICFILES_DIRS = (
     os.path.join(os.path.dirname(os.path.dirname(__file__)), 'worldhero', 'static'),
 )
 
+STATIC_ROOT = '/home/python/static'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        }
-    },
-    'loggers': {
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    }
-}
 
 LOGIN_URL = '/login'
 
