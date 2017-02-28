@@ -8,7 +8,7 @@ $('.icon-lupa').on("click", eventoLupa);
 $('.txt-buscar').on("keypress", function(evt){
     var dato_busqueda = $(this).val();
     if(evt.key == 'Enter')
-        window.location = "http://nataly.cloudapp.net/python/blogs/?search="+dato_busqueda;
+        window.location.href = "http://nataly.cloudapp.net/python/blogs/?search="+dato_busqueda;
 });
 
 $('.titulo').on("click", function(){
