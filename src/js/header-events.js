@@ -12,7 +12,6 @@ $('.txt-buscar').on("keypress", function(evt){
 });
 
 $('.titulo').on("click", function(){
-
     window.location = "http://nataly.cloudapp.net/python/";
 });
 

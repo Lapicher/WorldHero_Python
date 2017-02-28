@@ -20,7 +20,7 @@ $('.icon-heart').on("click",function(){
     if (typeof(Storage) !== "undefined") {
         // Code for localStorage/sessionStorage.
           var id=$(this).parent().parent().data().id;
-          var favorito=localStorage.getItem(id);
+          var favorito=localStorage.getItem();
           console.log(favorito);
           if(favorito!="1"){
               localStorage.setItem(id,"1");
