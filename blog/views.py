@@ -189,7 +189,7 @@ class CrearPostView(View):
 
             post_form = BlogForm()  # limpia los campos para que se pueda crear una nueva foto.
             mes = _("Post creado satisfactoriamente. Ver post: ")
-            message = "{2}<a href='/../blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk, mes, )
+            message = "{2}<a href='http://nataly.cloudapp.net/python/blogs/{0}/{1}'>POST</a>".format(request.user.username, new_post.pk, mes, )
         categorias = Category.objects.all()
         context = {'form': post_form, 'message': message, 'category_list': categorias}
         return render(request, 'blog/create_post.html', context)
