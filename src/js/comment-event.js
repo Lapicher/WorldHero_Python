@@ -32,7 +32,7 @@ $('.escribir > form').on("submit",function(){
     });
     */
     $.ajax({
-        url: "/api/comments/",
+        url: "/python/api/comments/",
         method: "post",
         data: datos,
         success: function(){
@@ -112,7 +112,7 @@ $(window).on("scroll",function(){
             var idpost= $(".plantilla-detalle").data("id");
             console.log(idpost);
             $.ajax({
-                url: "/api/comments/?_order=fecha",
+                url: "/python/api/comments/?_order=fecha",
                 method: "get",
                 data: {'idpost':idpost},
                 success: function(respuesta){

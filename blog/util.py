@@ -22,7 +22,7 @@ def find_hashtags(text):
 @shared_task
 def send_mail(mailOptions):
 
-    response = requests.post('http://127.0.0.1:3000/api', data=mailOptions)
+    response = requests.post('http://127.0.0.1:3001/api', data=mailOptions)
 
     if response.status_code != 200:
         print('Huvo un error al enviar el mail')
