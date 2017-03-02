@@ -326,3 +326,17 @@ Se corre el microservicio:
 el microservicio corre el en puerto 3000. 
 
 
+## Puesta en producción:
+
+Enlace donde se encuentra alojada la aplicación:
+[WorldHero](http://nataly.cloudapp.net/python/)
+
+### Otras aplicaciones ejecutandose en el servidor:
+
+## NodeJS
+
+Ejemplo de chat con NodeJS por [Igor Antun](https://github.com/IgorAntun/node-chat)
+
+[http://nataly.cloudapp.net/node/](http://nataly.cloudapp.net/node/)
+
+
