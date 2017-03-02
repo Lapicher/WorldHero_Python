@@ -103,7 +103,7 @@ class BlogQueryset(object):
 
 
 class DetailView(View):
-    @method_decorator(login_required())
+    #@method_decorator(login_required())
     def get(self, request, pk, user):
         """
         Renderiza el detalle del post de un usuario espesifico.
